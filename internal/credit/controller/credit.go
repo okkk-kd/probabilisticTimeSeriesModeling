@@ -15,6 +15,7 @@ type creditCtrl struct {
 
 type CreditCtrl interface {
 	RetrieveTwoColumns() fiber.Handler
+	ForecastingBankData() fiber.Handler
 }
 
 func NewCreditCtrl(creditUC usecase.CreditUC, loggingUC logger.LoggerUC) (obj CreditCtrl, err error) {
@@ -28,6 +29,19 @@ func (ctrl *creditCtrl) RetrieveTwoColumns() fiber.Handler {
 	return func(ctx *fiber.Ctx) error {
 		defer ctrl.loggingUC.CreateAPILog(ctx, time.Now())
 		result, err := ctrl.creditUC.RetrieveTwoColumns()
+		if err != nil {
+			err = errors.Wrapf(err, "creditCtrl.RetrieveTwoColumns()")
+			ctx.Locals("error", err.Error())
+			return ctx.Status(fiber.StatusBadRequest).JSON(err.Error())
+		}
+		return ctx.Status(fiber.StatusOK).JSON(result)
+	}
+}
+
+func (ctrl *creditCtrl) ForecastingBankData() fiber.Handler {
+	return func(ctx *fiber.Ctx) error {
+		defer ctrl.loggingUC.CreateAPILog(ctx, time.Now())
+		result, err := ctrl.creditUC.ForecastingBankData()
 		if err != nil {
 			err = errors.Wrapf(err, "creditCtrl.RetrieveTwoColumns()")
 			ctx.Locals("error", err.Error())

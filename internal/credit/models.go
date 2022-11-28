@@ -27,12 +27,3 @@ type Dataset struct {
 		DatabaseID          int             `json:"database_id"`
 	} `json:"dataset"`
 }
-
-type BankForecast struct {
-
-}
-
-type BankElement struct {
-	Date string
-	Price float64
-}

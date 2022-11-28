@@ -7,4 +7,5 @@ import (
 
 func CreditRoutesGroup(mw middleware.MDWManager, creditRout fiber.Router, h CreditCtrl) {
 	creditRout.Get("/retrieve_two_columns", mw.APIMiddleware(), h.RetrieveTwoColumns())
+	creditRout.Get("/bank_forecast", mw.APIMiddleware(), h.ForecastingBankData())
 }
