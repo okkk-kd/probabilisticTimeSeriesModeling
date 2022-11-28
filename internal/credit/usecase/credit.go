@@ -1,6 +1,7 @@
 package usecase
 
 import (
+	"encoding/json"
 	"probabilisticTimeSeriesModeling/internal/credit"
 	"probabilisticTimeSeriesModeling/internal/credit/repository"
 )
@@ -23,6 +24,20 @@ func (uc *creditUC) RetrieveTwoColumns() (response credit.Dataset, err error) {
 	response, err = uc.repo.RetrieveTwoColumns()
 	if err != nil {
 		return
+	}
+	return
+}
+
+func (uc *creditUC) ForecastingBankData() (response credit.BankForecast, err error) {
+	var bankData credit.BankElement
+	rawData, err := uc.RetrieveTwoColumns()
+	if err != nil {
+		return
+	}
+	for _, obj := range rawData.Datasett.Data {
+		for _, el := range obj {
+			bankData =
+		}
 	}
 	return
 }
