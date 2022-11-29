@@ -139,7 +139,7 @@ func (repo *creditRepo) DeleteCodeDataByID(ctx context.Context, params credit.De
 }
 
 func (repo *creditRepo) UpdateCodeDataByID(ctx context.Context, params credit.UpdateCodeDataByID) (err error) {
-	_, err = repo.db.ExecContext(ctx, fmt.Sprintf(queryUpdateCodeDataByID, params.Code), params.Amount, params.Date)
+	_, err = repo.db.ExecContext(ctx, fmt.Sprintf(queryUpdateCodeDataByID, params.Code), params.Amount, params.Date, params.ID)
 	if err != nil {
 		return
 	}

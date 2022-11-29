@@ -6,6 +6,7 @@ import (
 	"probabilisticTimeSeriesModeling/internal/credit"
 	"probabilisticTimeSeriesModeling/internal/credit/usecase"
 	"probabilisticTimeSeriesModeling/pkg/logger"
+	"probabilisticTimeSeriesModeling/pkg/utils/reqvalidator"
 	"strings"
 	"time"
 )
@@ -112,9 +113,11 @@ func (ctrl *creditCtrl) UpdateCodeDataByID() fiber.Handler {
 	return func(ctx *fiber.Ctx) error {
 		var params credit.UpdateCodeDataByID
 		defer ctrl.loggingUC.CreateAPILog(ctx, time.Now())
-		params.ID = ctx.Params("id", params.ID)
-		params.Code = strings.ToLower(ctx.Params("code", params.Code))
-		err := ctrl.creditUC.UpdateCodeDataByID(ctx.Context(), params)
+		err := reqvalidator.ReadRequest(ctx, &params)
+		if err != nil {
+			ctx.Status(fiber.StatusBadRequest).JSON(err.Error())
+		}
+		err = ctrl.creditUC.UpdateCodeDataByID(ctx.Context(), params)
 		if err != nil {
 			err = errors.Wrapf(err, "creditCtrl.RetrieveTwoColumns()")
 			ctx.Locals("error", err.Error())
@@ -128,8 +131,11 @@ func (ctrl *creditCtrl) AddCodeData() fiber.Handler {
 	return func(ctx *fiber.Ctx) error {
 		var params credit.AddCodeData
 		defer ctrl.loggingUC.CreateAPILog(ctx, time.Now())
-		params.Code = strings.ToLower(ctx.Params("code", params.Code))
-		err := ctrl.creditUC.AddCodeData(ctx.Context(), params)
+		err := reqvalidator.ReadRequest(ctx, &params)
+		if err != nil {
+			ctx.Status(fiber.StatusBadRequest).JSON(err.Error())
+		}
+		err = ctrl.creditUC.AddCodeData(ctx.Context(), params)
 		if err != nil {
 			err = errors.Wrapf(err, "creditCtrl.RetrieveTwoColumns()")
 			ctx.Locals("error", err.Error())

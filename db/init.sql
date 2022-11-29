@@ -7,7 +7,7 @@ CREATE SCHEMA codes;
             constraint code_test_pk
                 primary key,
         amount double precision not null,
-        date   timestamp          not null
+        date   timestamp with time zone          not null
     );
 
 alter table codes.code_test

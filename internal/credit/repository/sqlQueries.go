@@ -2,7 +2,7 @@ package repository
 
 const (
 	queryGetCodesList = `
-select name, code from codes.codes
+select id, name, code from codes.codes
 `
 	queryCreateCodesDataTable = `
 create table codes.%s
@@ -30,7 +30,7 @@ select amount, date from codes.%s where id = $1
 delete from codes.%s where id = $1
 `
 	queryUpdateCodeDataByID = `
-update codes.%s set amount = $1, date = $2
+update codes.%s set amount = $1, date = $2 where id = $3
 `
 	queryAddCodeData = `
 insert into codes.%s (amount, date)

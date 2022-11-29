@@ -34,6 +34,7 @@ type ForecastingBankDataRequest struct {
 }
 
 type GetCodesListResponse struct {
+	ID   int    `db:"id"`
 	Name string `db:"name"`
 	Code string `db:"code"`
 }
@@ -49,14 +50,15 @@ type DeleteCodeDataByID struct {
 }
 
 type UpdateCodeDataByID struct {
-	ID     string
-	Code   string
+	ID     int       `json:"id"`
+	Code   string    `json:"code"`
 	Amount float64   `json:"amount"`
 	Date   time.Time `json:"date"`
 }
 
 type AddCodeData struct {
-	Code   string
+	ID     int       `json:"id"`
+	Code   string    `json:"code"`
 	Amount float64   `json:"amount"`
 	Date   time.Time `json:"date"`
 }
