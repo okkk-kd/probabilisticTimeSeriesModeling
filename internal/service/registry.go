@@ -6,6 +6,8 @@ import (
 	"probabilisticTimeSeriesModeling/internal/credit/controller"
 	"probabilisticTimeSeriesModeling/internal/middleware"
 	registry "probabilisticTimeSeriesModeling/internal/service/registry"
+	sessionCtrl "probabilisticTimeSeriesModeling/internal/session/controller"
+	userCtrl "probabilisticTimeSeriesModeling/internal/users/controller"
 	"probabilisticTimeSeriesModeling/pkg/fhttp"
 	"probabilisticTimeSeriesModeling/pkg/logger"
 )
@@ -14,6 +16,8 @@ type serviceRegistry struct {
 	creditReg registry.CreditReg
 	mw        registry.MDWManager
 	logging   registry.Logging
+	session   registry.SessionReg
+	user      registry.UserReg
 }
 
 type ServiceRegistry interface {
@@ -23,6 +27,8 @@ type ServiceRegistry interface {
 	)
 	NewMDWManager(*config.Config, logger.Logger) (middleware.MDWManager, error)
 	NewLogging(cfg *config.Config, logger logger.Logger) (obj logger.LoggerUC, err error)
+	NewUserReg(cfg *config.Config, pgDB *sqlx.DB) (obj userCtrl.UserCtrl, err error)
+	NewSessionReg(cfg *config.Config, pgDB *sqlx.DB) (obj sessionCtrl.SessionCtrl, err error)
 }
 
 func NewRegistry() (obj ServiceRegistry, err error) {
@@ -32,10 +38,20 @@ func NewRegistry() (obj ServiceRegistry, err error) {
 	}
 	mw := registry.NewMDWManagerReg()
 	logger := registry.NewLoggingReg()
+	user, err := registry.NewUserReg()
+	if err != nil {
+		return
+	}
+	session, err := registry.NewSessionReg()
+	if err != nil {
+		return
+	}
 	return &serviceRegistry{
 		creditReg: creditReg,
 		mw:        mw,
 		logging:   logger,
+		user:      user,
+		session:   session,
 	}, err
 }
 
@@ -59,5 +75,21 @@ func (r *serviceRegistry) NewMDWManager(cfg *config.Config, logger logger.Logger
 
 func (r *serviceRegistry) NewLogging(cfg *config.Config, logger logger.Logger) (obj logger.LoggerUC, err error) {
 	obj = r.logging.NewLogging(cfg, logger)
+	return
+}
+
+func (r *serviceRegistry) NewUserReg(cfg *config.Config, pgDB *sqlx.DB) (obj userCtrl.UserCtrl, err error) {
+	obj, err = r.user.NewUserCtrl(cfg, pgDB)
+	if err != nil {
+		return
+	}
+	return
+}
+
+func (r *serviceRegistry) NewSessionReg(cfg *config.Config, pgDB *sqlx.DB) (obj sessionCtrl.SessionCtrl, err error) {
+	obj, err = r.session.NewSessionCtrl(cfg, pgDB)
+	if err != nil {
+		return
+	}
 	return
 }

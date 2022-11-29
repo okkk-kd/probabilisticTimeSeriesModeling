@@ -13,7 +13,7 @@ type service struct {
 }
 
 type Service interface {
-	NewCreditService(*config.Config, logger.Logger, *sqlx.DB) (Controllers, error)
+	NewService(*config.Config, logger.Logger, *sqlx.DB) (Controllers, error)
 	NewMDWManager(*config.Config, logger.Logger) (MDWManager, error)
 	NewLogger(*config.Config, logger.Logger) (Logger, error)
 }
@@ -28,13 +28,23 @@ func NewService() (obj Service, err error) {
 	}, err
 }
 
-func (s *service) NewCreditService(cfg *config.Config, logger logger.Logger, pgDB *sqlx.DB) (_ Controllers, err error) {
-	ctrl, err := s.registry.NewCreditReg(cfg, logger, pgDB)
+func (s *service) NewService(cfg *config.Config, logger logger.Logger, pgDB *sqlx.DB) (_ Controllers, err error) {
+	creditCtrl, err := s.registry.NewCreditReg(cfg, logger, pgDB)
+	if err != nil {
+		return
+	}
+	userCtrl, err := s.registry.NewUserReg(cfg, pgDB)
+	if err != nil {
+		return
+	}
+	sessionCtrl, err := s.registry.NewSessionReg(cfg, pgDB)
 	if err != nil {
 		return
 	}
 	return Controllers{
-		ctrl,
+		creditCtrl,
+		userCtrl,
+		sessionCtrl,
 	}, err
 }
 

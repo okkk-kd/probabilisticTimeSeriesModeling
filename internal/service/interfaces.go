@@ -1,14 +1,22 @@
 package service
 
 import (
-	"probabilisticTimeSeriesModeling/internal/credit/controller"
+	creditCtrl "probabilisticTimeSeriesModeling/internal/credit/controller"
 	"probabilisticTimeSeriesModeling/internal/middleware"
+	sessionCtrl "probabilisticTimeSeriesModeling/internal/session/controller"
+	userCtrl "probabilisticTimeSeriesModeling/internal/users/controller"
 	"probabilisticTimeSeriesModeling/pkg/logger"
 )
 
 type Controllers struct {
 	Credit interface {
-		controller.CreditCtrl
+		creditCtrl.CreditCtrl
+	}
+	User interface {
+		userCtrl.UserCtrl
+	}
+	Session interface {
+		sessionCtrl.SessionCtrl
 	}
 }
 

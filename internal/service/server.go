@@ -54,7 +54,7 @@ func (s *server) RunServer() (err error) {
 		return
 	}
 	//controllers
-	controllers, err := newService.NewCreditService(s.config, s.logger, s.pgDB)
+	controllers, err := newService.NewService(s.config, s.logger, s.pgDB)
 	if err != nil {
 		log.Fatalln(err.Error())
 		return
