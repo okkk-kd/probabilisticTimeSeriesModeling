@@ -4,3 +4,16 @@ Server:
   APIKey: qVBkx9WuGNh8GiL51phQ
   NasdaqURL: https://data.nasdaq.com
   ShowUnknownErrorsInResponse: true
+Postgres:
+  Host: host.docker.internal
+  Port: '5432'
+  User: postgres
+  Password: postgres
+  DBName: postgres
+  SSLMode: disable
+  PGDriver: pgx
+  settings:
+    MaxOpenConns: 60
+    ConnMaxLifetime: 120
+    MaxIdleConns: 30
+    ConnMaxIdleTime: 20

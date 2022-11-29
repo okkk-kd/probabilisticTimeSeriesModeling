@@ -30,4 +30,38 @@ type Dataset struct {
 
 type ForecastingBankDataRequest struct {
 	Years string
+	Code  string
+}
+
+type GetCodesListResponse struct {
+	Name string `db:"name"`
+	Code string `db:"code"`
+}
+
+type GetCodeDataByID struct {
+	ID   string
+	Code string
+}
+
+type DeleteCodeDataByID struct {
+	ID   string
+	Code string
+}
+
+type UpdateCodeDataByID struct {
+	ID     string
+	Code   string
+	Amount float64   `json:"amount"`
+	Date   time.Time `json:"date"`
+}
+
+type AddCodeData struct {
+	Code   string
+	Amount float64   `json:"amount"`
+	Date   time.Time `json:"date"`
+}
+
+type GetCodeDataByIDResponse struct {
+	Amount float64   `db:"amount"`
+	Date   time.Time `db:"date"`
 }

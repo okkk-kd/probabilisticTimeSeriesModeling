@@ -6,6 +6,7 @@ import (
 	"probabilisticTimeSeriesModeling/internal/credit"
 	"probabilisticTimeSeriesModeling/internal/credit/usecase"
 	"probabilisticTimeSeriesModeling/pkg/logger"
+	"strings"
 	"time"
 )
 
@@ -17,6 +18,11 @@ type creditCtrl struct {
 type CreditCtrl interface {
 	RetrieveTwoColumns() fiber.Handler
 	ForecastingBankData() fiber.Handler
+	GetCodesList() fiber.Handler
+	GetCodeDataByID() fiber.Handler
+	DeleteCodeDataByID() fiber.Handler
+	UpdateCodeDataByID() fiber.Handler
+	AddCodeData() fiber.Handler
 }
 
 func NewCreditCtrl(creditUC usecase.CreditUC, loggingUC logger.LoggerUC) (obj CreditCtrl, err error) {
@@ -28,8 +34,10 @@ func NewCreditCtrl(creditUC usecase.CreditUC, loggingUC logger.LoggerUC) (obj Cr
 
 func (ctrl *creditCtrl) RetrieveTwoColumns() fiber.Handler {
 	return func(ctx *fiber.Ctx) error {
+		var params credit.ForecastingBankDataRequest
 		defer ctrl.loggingUC.CreateAPILog(ctx, time.Now())
-		result, err := ctrl.creditUC.RetrieveTwoColumns()
+		params.Code = strings.ToLower(ctx.Params("code", params.Code))
+		result, err := ctrl.creditUC.RetrieveTwoColumns(params.Code)
 		if err != nil {
 			err = errors.Wrapf(err, "creditCtrl.RetrieveTwoColumns()")
 			ctx.Locals("error", err.Error())
@@ -44,6 +52,7 @@ func (ctrl *creditCtrl) ForecastingBankData() fiber.Handler {
 		var params credit.ForecastingBankDataRequest
 		defer ctrl.loggingUC.CreateAPILog(ctx, time.Now())
 		params.Years = ctx.Params("years", params.Years)
+		params.Code = strings.ToLower(ctx.Params("code", params.Code))
 		result, err := ctrl.creditUC.ForecastingBankData(params)
 		if err != nil {
 			err = errors.Wrapf(err, "creditCtrl.RetrieveTwoColumns()")
@@ -51,5 +60,81 @@ func (ctrl *creditCtrl) ForecastingBankData() fiber.Handler {
 			return ctx.Status(fiber.StatusBadRequest).JSON(err.Error())
 		}
 		return ctx.Status(fiber.StatusOK).JSON(result)
+	}
+}
+
+func (ctrl *creditCtrl) GetCodesList() fiber.Handler {
+	return func(ctx *fiber.Ctx) error {
+		defer ctrl.loggingUC.CreateAPILog(ctx, time.Now())
+		result, err := ctrl.creditUC.GetCodesList(ctx.Context())
+		if err != nil {
+			err = errors.Wrapf(err, "creditCtrl.RetrieveTwoColumns()")
+			ctx.Locals("error", err.Error())
+			return ctx.Status(fiber.StatusBadRequest).JSON(err.Error())
+		}
+		return ctx.Status(fiber.StatusOK).JSON(result)
+	}
+}
+
+func (ctrl *creditCtrl) GetCodeDataByID() fiber.Handler {
+	return func(ctx *fiber.Ctx) error {
+		var params credit.GetCodeDataByID
+		defer ctrl.loggingUC.CreateAPILog(ctx, time.Now())
+		params.ID = ctx.Params("id", params.ID)
+		params.Code = strings.ToLower(ctx.Params("code", params.Code))
+		result, err := ctrl.creditUC.GetCodeDataByID(ctx.Context(), params)
+		if err != nil {
+			err = errors.Wrapf(err, "creditCtrl.RetrieveTwoColumns()")
+			ctx.Locals("error", err.Error())
+			return ctx.Status(fiber.StatusBadRequest).JSON(err.Error())
+		}
+		return ctx.Status(fiber.StatusOK).JSON(result)
+	}
+}
+
+func (ctrl *creditCtrl) DeleteCodeDataByID() fiber.Handler {
+	return func(ctx *fiber.Ctx) error {
+		var params credit.DeleteCodeDataByID
+		defer ctrl.loggingUC.CreateAPILog(ctx, time.Now())
+		params.ID = ctx.Params("id", params.ID)
+		params.Code = strings.ToLower(ctx.Params("code", params.Code))
+		err := ctrl.creditUC.DeleteCodeDataByID(ctx.Context(), params)
+		if err != nil {
+			err = errors.Wrapf(err, "creditCtrl.RetrieveTwoColumns()")
+			ctx.Locals("error", err.Error())
+			return ctx.Status(fiber.StatusBadRequest).JSON(err.Error())
+		}
+		return ctx.SendStatus(fiber.StatusOK)
+	}
+}
+
+func (ctrl *creditCtrl) UpdateCodeDataByID() fiber.Handler {
+	return func(ctx *fiber.Ctx) error {
+		var params credit.UpdateCodeDataByID
+		defer ctrl.loggingUC.CreateAPILog(ctx, time.Now())
+		params.ID = ctx.Params("id", params.ID)
+		params.Code = strings.ToLower(ctx.Params("code", params.Code))
+		err := ctrl.creditUC.UpdateCodeDataByID(ctx.Context(), params)
+		if err != nil {
+			err = errors.Wrapf(err, "creditCtrl.RetrieveTwoColumns()")
+			ctx.Locals("error", err.Error())
+			return ctx.Status(fiber.StatusBadRequest).JSON(err.Error())
+		}
+		return ctx.SendStatus(fiber.StatusOK)
+	}
+}
+
+func (ctrl *creditCtrl) AddCodeData() fiber.Handler {
+	return func(ctx *fiber.Ctx) error {
+		var params credit.AddCodeData
+		defer ctrl.loggingUC.CreateAPILog(ctx, time.Now())
+		params.Code = strings.ToLower(ctx.Params("code", params.Code))
+		err := ctrl.creditUC.AddCodeData(ctx.Context(), params)
+		if err != nil {
+			err = errors.Wrapf(err, "creditCtrl.RetrieveTwoColumns()")
+			ctx.Locals("error", err.Error())
+			return ctx.Status(fiber.StatusBadRequest).JSON(err.Error())
+		}
+		return ctx.SendStatus(fiber.StatusOK)
 	}
 }

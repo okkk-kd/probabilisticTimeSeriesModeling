@@ -1,6 +1,7 @@
 package service
 
 import (
+	"github.com/jmoiron/sqlx"
 	"github.com/pkg/errors"
 	"probabilisticTimeSeriesModeling/config"
 	"probabilisticTimeSeriesModeling/pkg/logger"
@@ -12,7 +13,7 @@ type service struct {
 }
 
 type Service interface {
-	NewCreditService(*config.Config, logger.Logger) (Controllers, error)
+	NewCreditService(*config.Config, logger.Logger, *sqlx.DB) (Controllers, error)
 	NewMDWManager(*config.Config, logger.Logger) (MDWManager, error)
 	NewLogger(*config.Config, logger.Logger) (Logger, error)
 }
@@ -27,8 +28,8 @@ func NewService() (obj Service, err error) {
 	}, err
 }
 
-func (s *service) NewCreditService(cfg *config.Config, logger logger.Logger) (_ Controllers, err error) {
-	ctrl, err := s.registry.NewCreditReg(cfg, logger)
+func (s *service) NewCreditService(cfg *config.Config, logger logger.Logger, pgDB *sqlx.DB) (_ Controllers, err error) {
+	ctrl, err := s.registry.NewCreditReg(cfg, logger, pgDB)
 	if err != nil {
 		return
 	}

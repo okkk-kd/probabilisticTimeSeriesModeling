@@ -1,11 +1,11 @@
 package usecase
 
 import (
-	"fmt"
+	"context"
 	"probabilisticTimeSeriesModeling/internal/credit"
 	"probabilisticTimeSeriesModeling/internal/credit/repository"
 	"probabilisticTimeSeriesModeling/pkg/forecast"
-	"strconv"
+	"probabilisticTimeSeriesModeling/pkg/utils"
 )
 
 type creditUC struct {
@@ -13,8 +13,13 @@ type creditUC struct {
 }
 
 type CreditUC interface {
-	RetrieveTwoColumns() (credit.Dataset, error)
+	RetrieveTwoColumns(code string) (credit.Dataset, error)
 	ForecastingBankData(params credit.ForecastingBankDataRequest) (response *forecast.BankForecast, err error)
+	GetCodesList(ctx context.Context) (result []credit.GetCodesListResponse, err error)
+	GetCodeDataByID(ctx context.Context, params credit.GetCodeDataByID) (result credit.GetCodeDataByIDResponse, err error)
+	DeleteCodeDataByID(ctx context.Context, params credit.DeleteCodeDataByID) (err error)
+	UpdateCodeDataByID(ctx context.Context, params credit.UpdateCodeDataByID) (err error)
+	AddCodeData(ctx context.Context, params credit.AddCodeData) (err error)
 }
 
 func NewCreditUC(repo repository.CreditRepo) (obj CreditUC, err error) {
@@ -23,33 +28,23 @@ func NewCreditUC(repo repository.CreditRepo) (obj CreditUC, err error) {
 	}, err
 }
 
-func (uc *creditUC) RetrieveTwoColumns() (response credit.Dataset, err error) {
-	response, err = uc.repo.RetrieveTwoColumns()
+func (uc *creditUC) RetrieveTwoColumns(code string) (response credit.Dataset, err error) {
+	response, err = uc.repo.RetrieveTwoColumns(code)
 	if err != nil {
 		return
 	}
-	return
-}
-
-func (uc *creditUC) ConvertToBankData(before []interface{}) (result forecast.ForecastEl, err error) {
-	result.Data = fmt.Sprintf("%v", before[0])
-	price, err := strconv.ParseFloat(fmt.Sprintf("%v", before[1]), 64)
-	if err != nil {
-		return
-	}
-	result.Price = price
 	return
 }
 
 func (uc *creditUC) ForecastingBankData(params credit.ForecastingBankDataRequest) (response *forecast.BankForecast, err error) {
 	var bankData []forecast.ForecastEl
 
-	rawData, err := uc.RetrieveTwoColumns()
+	rawData, err := uc.RetrieveTwoColumns(params.Code)
 	if err != nil {
 		return
 	}
 	for _, obj := range rawData.Datasett.Data {
-		bank, err := uc.ConvertToBankData(obj)
+		bank, err := utils.ConvertToBankData(obj)
 		if err != nil {
 			return response, err
 		}
@@ -60,6 +55,46 @@ func (uc *creditUC) ForecastingBankData(params credit.ForecastingBankDataRequest
 		return
 	}
 	response, err = fore.ForecastingBankData(bankData, params)
+	if err != nil {
+		return
+	}
+	return
+}
+
+func (uc *creditUC) GetCodesList(ctx context.Context) (result []credit.GetCodesListResponse, err error) {
+	result, err = uc.repo.GetCodesList(ctx)
+	if err != nil {
+		return
+	}
+	return
+}
+
+func (uc *creditUC) GetCodeDataByID(ctx context.Context, params credit.GetCodeDataByID) (result credit.GetCodeDataByIDResponse, err error) {
+	result, err = uc.repo.GetCodeDataByID(ctx, params)
+	if err != nil {
+		return
+	}
+	return
+}
+
+func (uc *creditUC) DeleteCodeDataByID(ctx context.Context, params credit.DeleteCodeDataByID) (err error) {
+	err = uc.repo.DeleteCodeDataByID(ctx, params)
+	if err != nil {
+		return
+	}
+	return
+}
+
+func (uc *creditUC) UpdateCodeDataByID(ctx context.Context, params credit.UpdateCodeDataByID) (err error) {
+	err = uc.repo.UpdateCodeDataByID(ctx, params)
+	if err != nil {
+		return
+	}
+	return
+}
+
+func (uc *creditUC) AddCodeData(ctx context.Context, params credit.AddCodeData) (err error) {
+	err = uc.repo.AddCodeData(ctx, params)
 	if err != nil {
 		return
 	}

@@ -4,12 +4,14 @@ import (
 	"context"
 	"fmt"
 	"github.com/gofiber/fiber/v2"
+	"github.com/jmoiron/sqlx"
 	"os"
 	"os/signal"
 	"probabilisticTimeSeriesModeling/config"
 	"probabilisticTimeSeriesModeling/internal/service"
 	"probabilisticTimeSeriesModeling/pkg/httperrors"
 	"probabilisticTimeSeriesModeling/pkg/logger"
+	"probabilisticTimeSeriesModeling/pkg/storage/postgres"
 	"syscall"
 )
 
@@ -29,7 +31,23 @@ func main() {
 
 	app := fiber.New(fiber.Config{ErrorHandler: httperrors.Init(&cfg, logger)})
 
-	s, err := service.NewServer(app, &ctx, &cfg, logger)
+	psqlDB, err := postgres.InitPsqlDB(ctx, &cfg)
+	if err != nil {
+		logger.Fatalf("PostgreSQL init error: %s", err)
+	} else {
+		logger.Infof("PostgreSQL connected, status: %#v", psqlDB.Stats())
+	}
+
+	defer func(psqlDB *sqlx.DB) {
+		err = psqlDB.Close()
+		if err != nil {
+			logger.Infof(err.Error())
+		} else {
+			logger.Info("PostgreSQL closed properly")
+		}
+	}(psqlDB)
+
+	s, err := service.NewServer(app, &ctx, &cfg, logger, psqlDB)
 	if err != nil {
 		return
 	}

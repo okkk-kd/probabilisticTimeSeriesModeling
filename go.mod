@@ -1,10 +1,12 @@
 module probabilisticTimeSeriesModeling
 
-go 1.19
+go 1.18
 
 require (
 	github.com/go-playground/validator/v10 v10.11.1
 	github.com/gofiber/fiber/v2 v2.40.1
+	github.com/jackc/pgx v3.6.2+incompatible
+	github.com/jmoiron/sqlx v1.3.5
 	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.28.0
 	github.com/spf13/viper v1.14.0
@@ -13,10 +15,13 @@ require (
 
 require (
 	github.com/andybalholm/brotli v1.0.4 // indirect
+	github.com/cockroachdb/apd v1.1.0 // indirect
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
+	github.com/gofrs/uuid v4.3.1+incompatible // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
+	github.com/jackc/fake v0.0.0-20150926172116-812a484cc733 // indirect
 	github.com/klauspost/compress v1.15.9 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/magiconair/properties v1.8.6 // indirect
@@ -27,6 +32,7 @@ require (
 	github.com/pelletier/go-toml v1.9.5 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.5 // indirect
 	github.com/rivo/uniseg v0.2.0 // indirect
+	github.com/shopspring/decimal v1.3.1 // indirect
 	github.com/spf13/afero v1.9.2 // indirect
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect

@@ -7,7 +7,7 @@ CREATE SCHEMA codes;
             constraint code_test_pk
                 primary key,
         amount double precision not null,
-        date   integer          not null
+        date   timestamp          not null
     );
 
 alter table codes.code_test
@@ -91,3 +91,15 @@ create unique index sessions_id_uindex
 create unique index sessions_session_key_uindex
     on users.sessions (session_key);
 
+insert into codes.codes (name, code) values('Austria ECU-EUR exchange rates','AME_A_AUT_1_0_99_0_XNE');
+insert into codes.codes (name, code) values('Belgium ECU-EUR exchange rates','AME_A_BEL_1_0_99_0_XNE');
+insert into codes.codes (name, code) values('FR. Germany ECU-EUR exchange rates','AME_A_DEU_1_0_99_0_XNE');
+insert into codes.codes (name, code) values('West Germany ECU-EUR exchange rates','AME_A_D_W_1_0_99_0_XNE');
+insert into codes.codes (name, code) values('Spain ECU-EUR exchange rates','AME_A_ESP_1_0_99_0_XNE');
+insert into codes.codes (name, code) values('Finland ECU-EUR exchange rates ','AME_A_FIN_1_0_99_0_XNE');
+insert into codes.codes (name, code) values('France ECU-EUR exchange rates','AME_A_FRA_1_0_99_0_XNE');
+insert into codes.codes (name, code) values('Greece ECU-EUR exchange rates','AME_A_GRC_1_0_99_0_XNE');
+insert into codes.codes (name, code) values('Ireland ECU-EUR exchange rates','AME_A_IRL_1_0_99_0_XNE');
+insert into codes.codes (name, code) values('Italy ECU-EUR exchange rates','AME_A_ITA_1_0_99_0_XNE');
+
+insert into users.users (name, password) values('admin','admin');

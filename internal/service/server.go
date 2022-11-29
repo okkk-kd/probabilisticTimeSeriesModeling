@@ -5,6 +5,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	fiberLogger "github.com/gofiber/fiber/v2/middleware/logger"
+	"github.com/jmoiron/sqlx"
 	"log"
 	"probabilisticTimeSeriesModeling/config"
 	"probabilisticTimeSeriesModeling/internal/credit/controller"
@@ -16,6 +17,7 @@ type server struct {
 	ctx    *context.Context
 	config *config.Config
 	logger logger.Logger
+	pgDB   *sqlx.DB
 }
 
 type Server interface {
@@ -27,12 +29,14 @@ func NewServer(
 	ctx *context.Context,
 	config *config.Config,
 	logger logger.Logger,
+	database *sqlx.DB,
 ) (obj Server, err error) {
 	return &server{
 		app:    app,
 		ctx:    ctx,
 		config: config,
 		logger: logger,
+		pgDB:   database,
 	}, err
 }
 
@@ -50,7 +54,7 @@ func (s *server) RunServer() (err error) {
 		return
 	}
 	//controllers
-	controllers, err := newService.NewCreditService(s.config, s.logger)
+	controllers, err := newService.NewCreditService(s.config, s.logger, s.pgDB)
 	if err != nil {
 		log.Fatalln(err.Error())
 		return

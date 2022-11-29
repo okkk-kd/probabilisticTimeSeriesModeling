@@ -1,6 +1,7 @@
 package service
 
 import (
+	"github.com/jmoiron/sqlx"
 	"probabilisticTimeSeriesModeling/config"
 	"probabilisticTimeSeriesModeling/internal/credit/controller"
 	"probabilisticTimeSeriesModeling/internal/middleware"
@@ -16,7 +17,7 @@ type serviceRegistry struct {
 }
 
 type ServiceRegistry interface {
-	NewCreditReg(*config.Config, logger.Logger) (
+	NewCreditReg(*config.Config, logger.Logger, *sqlx.DB) (
 		controller.CreditCtrl,
 		error,
 	)
@@ -38,13 +39,13 @@ func NewRegistry() (obj ServiceRegistry, err error) {
 	}, err
 }
 
-func (r *serviceRegistry) NewCreditReg(cfg *config.Config, logger logger.Logger) (
+func (r *serviceRegistry) NewCreditReg(cfg *config.Config, logger logger.Logger, pgDB *sqlx.DB) (
 	ctrl controller.CreditCtrl,
 	err error,
 ) {
 	fhttpClient := fhttp.NewClient(cfg, logger)
 	log := r.logging.NewLogging(cfg, logger)
-	ctrl, err = r.creditReg.NewCreditCtrl(cfg, fhttpClient, log)
+	ctrl, err = r.creditReg.NewCreditCtrl(cfg, fhttpClient, log, pgDB)
 	if err != nil {
 		return
 	}

@@ -1,6 +1,7 @@
 package registry
 
 import (
+	"github.com/jmoiron/sqlx"
 	"probabilisticTimeSeriesModeling/config"
 	"probabilisticTimeSeriesModeling/internal/credit/controller"
 	"probabilisticTimeSeriesModeling/internal/credit/repository"
@@ -13,15 +14,15 @@ type creditReg struct {
 }
 
 type CreditReg interface {
-	NewCreditCtrl(*config.Config, *fhttp.Client, logger.LoggerUC) (controller.CreditCtrl, error)
+	NewCreditCtrl(*config.Config, *fhttp.Client, logger.LoggerUC, *sqlx.DB) (controller.CreditCtrl, error)
 }
 
 func NewCreditReg() (obj CreditReg, err error) {
 	return &creditReg{}, err
 }
 
-func (c *creditReg) NewCreditCtrl(cfg *config.Config, fhttpClient *fhttp.Client, log logger.LoggerUC) (ctrl controller.CreditCtrl, err error) {
-	repo, err := c.NewCreditRepo(cfg, fhttpClient)
+func (c *creditReg) NewCreditCtrl(cfg *config.Config, fhttpClient *fhttp.Client, log logger.LoggerUC, pgDB *sqlx.DB) (ctrl controller.CreditCtrl, err error) {
+	repo, err := c.NewCreditRepo(cfg, fhttpClient, pgDB)
 	if err != nil {
 		return
 	}
@@ -44,8 +45,12 @@ func (c *creditReg) NewCreditUC(repo repository.CreditRepo) (uc usecase.CreditUC
 	return
 }
 
-func (c *creditReg) NewCreditRepo(cfg *config.Config, fhttpClient *fhttp.Client) (repo repository.CreditRepo, err error) {
-	repo, err = repository.NewCreditRepo(cfg, fhttpClient)
+func (c *creditReg) NewCreditRepo(cfg *config.Config, fhttpClient *fhttp.Client, pgDB *sqlx.DB) (repo repository.CreditRepo, err error) {
+	repo, err = repository.NewCreditRepo(cfg, fhttpClient, pgDB)
+	if err != nil {
+		return
+	}
+	err = repo.InitCodeLists()
 	if err != nil {
 		return
 	}
