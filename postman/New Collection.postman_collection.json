@@ -1,0 +1,170 @@
+{
+	"info": {
+		"_postman_id": "a42f2722-e18e-4899-8800-5a9236663b9e",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24640457"
+	},
+	"item": [
+		{
+			"name": "retrieve_two_columns",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "bank_forecast",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "get_code_list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "API-Key",
+						"value": "qVBkx9WuGNh8GiL51phQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:7001/api/credit/get_code_list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"api",
+						"credit",
+						"get_code_list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/:id/:code/get_code_data",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "API-Key",
+						"value": "qVBkx9WuGNh8GiL51phQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:7001/api/credit/get_code_list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"api",
+						"credit",
+						"get_code_list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/:id/:code/code",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "API-Key",
+						"value": "qVBkx9WuGNh8GiL51phQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:7001/api/credit/get_code_list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"api",
+						"credit",
+						"get_code_list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/:id/:code/code",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "API-Key",
+						"value": "qVBkx9WuGNh8GiL51phQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2,\r\n    \"code\": \"AME_A_FIN_1_0_99_0_XNE\",\r\n    \"amount\": 10,\r\n    \"date\": \"2016-02-19\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7001/api/credit/code",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"api",
+						"credit",
+						"code"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/code_data",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "API-Key",
+						"value": "qVBkx9WuGNh8GiL51phQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:7001/api/credit/get_code_list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"api",
+						"credit",
+						"get_code_list"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
