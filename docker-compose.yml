@@ -17,7 +17,7 @@ services:
     depends_on:
       - db
     ports:
-      - 7001:7001
+      - '7001:7001'
     links:
       - db
     command: go run cmd/main.go
