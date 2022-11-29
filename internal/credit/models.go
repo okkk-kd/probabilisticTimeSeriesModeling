@@ -27,3 +27,7 @@ type Dataset struct {
 		DatabaseID          int             `json:"database_id"`
 	} `json:"dataset"`
 }
+
+type ForecastingBankDataRequest struct {
+	Years string
+}

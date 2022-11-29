@@ -14,7 +14,7 @@ type creditUC struct {
 
 type CreditUC interface {
 	RetrieveTwoColumns() (credit.Dataset, error)
-	ForecastingBankData() (response *forecast.BankForecast, err error)
+	ForecastingBankData(params credit.ForecastingBankDataRequest) (response *forecast.BankForecast, err error)
 }
 
 func NewCreditUC(repo repository.CreditRepo) (obj CreditUC, err error) {
@@ -41,7 +41,7 @@ func (uc *creditUC) ConvertToBankData(before []interface{}) (result forecast.For
 	return
 }
 
-func (uc *creditUC) ForecastingBankData() (response *forecast.BankForecast, err error) {
+func (uc *creditUC) ForecastingBankData(params credit.ForecastingBankDataRequest) (response *forecast.BankForecast, err error) {
 	var bankData []forecast.ForecastEl
 
 	rawData, err := uc.RetrieveTwoColumns()
@@ -59,7 +59,7 @@ func (uc *creditUC) ForecastingBankData() (response *forecast.BankForecast, err 
 	if err != nil {
 		return
 	}
-	response, err = fore.ForecastingBankData(bankData)
+	response, err = fore.ForecastingBankData(bankData, params)
 	if err != nil {
 		return
 	}
