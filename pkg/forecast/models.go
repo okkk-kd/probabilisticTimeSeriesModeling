@@ -1,7 +1,7 @@
 package forecast
 
 type BankForecast struct {
-	Points []BankPoint
+	Points map[int][]BankPoint
 }
 
 type BankPoint struct {

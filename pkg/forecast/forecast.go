@@ -12,10 +12,15 @@ func NewForecast() (obj Forecast, err error) {
 }
 
 func (f *forecast) ForecastingBankData(bankData []ForecastEl) (response *BankForecast, err error) {
+	var sum float64
+	var changeYear int
+	var yi float64
+	var bankForecast BankForecast
+	yearStart := 2010
+
 	if len(bankData) < 1 {
 		return
 	}
-	var sum float64
 	bankDataLen := len(bankData)
 	for i := range bankData {
 		if i+1 == bankDataLen {
@@ -25,19 +30,27 @@ func (f *forecast) ForecastingBankData(bankData []ForecastEl) (response *BankFor
 	}
 	b := sum / float64(bankDataLen)
 	a := bankData[bankDataLen-1].Price
-	var yi float64
-	var bankForecast BankForecast
-	bankForecast.Points = make([]BankPoint, 1)
-	for i := bankDataLen - 1; i > 0; i-- {
-		yi = a + b*float64(i) + 1
-		bankForecast.Points = append(bankForecast.Points, BankPoint{
+	for i := 0; i < n; i++ {
+		bankForecast.Points[yearStart] = make([]BankPoint, 0)
+		if i == bankDataLen {
+			yi = a + b*float64(i+1)
+			bankForecast.Points[yearStart] = append(bankForecast.Points[yearStart], BankPoint{
+				MidPrice: yi,
+				Date:     bankData[bankDataLen-i-1].Data,
+			})
+			continue
+		}
+		yi = a + b*float64(i+1)
+		bankForecast.Points[yearStart] = append(bankForecast.Points[yearStart], BankPoint{
 			MidPrice: yi,
 			Date:     bankData[bankDataLen-i-1].Data,
 		})
+		if changeYear == 4 {
+			changeYear = 0
+			yearStart++
+		}
+		changeYear++
 	}
-	//for i, el := range bankData {
-	//
-	//}
 	response = &bankForecast
 	return
 }
