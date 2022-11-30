@@ -27,6 +27,9 @@ type CreditRepo interface {
 	DeleteCodeDataByID(ctx context.Context, params credit.DeleteCodeDataByID) (err error)
 	UpdateCodeDataByID(ctx context.Context, params credit.UpdateCodeDataByID) (err error)
 	AddCodeData(ctx context.Context, params credit.AddCodeData) (err error)
+
+	CreateCustomUserDataTable(dbName string) (err error)
+	AddListCodeData(ctx context.Context, params []credit.AddCodeData) (err error)
 }
 
 func NewCreditRepo(cfg *config.Config, fhttpClient *fhttp.Client, pgDB *sqlx.DB) (obj CreditRepo, err error) {
@@ -148,6 +151,54 @@ func (repo *creditRepo) UpdateCodeDataByID(ctx context.Context, params credit.Up
 
 func (repo *creditRepo) AddCodeData(ctx context.Context, params credit.AddCodeData) (err error) {
 	_, err = repo.db.ExecContext(ctx, fmt.Sprintf(queryAddCodeData, params.Code), params.Amount, params.Date)
+	if err != nil {
+		return
+	}
+	return
+}
+
+func (repo *creditRepo) AddListCodeData(ctx context.Context, params []credit.AddCodeData) (err error) {
+	tx, err := repo.db.Begin()
+	if err != nil {
+		return
+	}
+	for _, el := range params {
+		_, err = tx.ExecContext(ctx, fmt.Sprintf(queryAddCodeData, el.Code), el.Amount, el.Date)
+		if err != nil {
+			errR := tx.Rollback()
+			if errR != nil {
+				return errors.Wrapf(err, errR.Error())
+			}
+			return err
+		}
+	}
+	err = tx.Commit()
+	if err != nil {
+		return
+	}
+	return
+}
+
+func (repo *creditRepo) CreateCustomUserDataTable(dbName string) (err error) {
+	tx, err := repo.db.Begin()
+	if err != nil {
+		return
+	}
+	if _, err := tx.Exec(fmt.Sprintf(queryCreateCodesDataTable, dbName, dbName, dbName, dbName, dbName)); err != nil {
+		errR := tx.Rollback()
+		if errR != nil {
+			return errors.Wrapf(err, errR.Error())
+		}
+		return err
+	}
+	if _, err := tx.Exec(queryInsertTableIntoTableList, dbName, dbName); err != nil {
+		errR := tx.Rollback()
+		if errR != nil {
+			return errors.Wrapf(err, errR.Error())
+		}
+		return err
+	}
+	err = tx.Commit()
 	if err != nil {
 		return
 	}

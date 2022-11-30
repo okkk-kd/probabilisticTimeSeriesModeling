@@ -14,7 +14,7 @@ type service struct {
 
 type Service interface {
 	NewService(*config.Config, logger.Logger, *sqlx.DB) (Controllers, error)
-	NewMDWManager(*config.Config, logger.Logger) (MDWManager, error)
+	NewMDWManager(*config.Config, logger.Logger, *sqlx.DB) (MDWManager, error)
 	NewLogger(*config.Config, logger.Logger) (Logger, error)
 }
 
@@ -33,7 +33,7 @@ func (s *service) NewService(cfg *config.Config, logger logger.Logger, pgDB *sql
 	if err != nil {
 		return
 	}
-	userCtrl, err := s.registry.NewUserReg(cfg, pgDB)
+	userCtrl, err := s.registry.NewUserReg(cfg, pgDB, logger)
 	if err != nil {
 		return
 	}
@@ -48,8 +48,8 @@ func (s *service) NewService(cfg *config.Config, logger logger.Logger, pgDB *sql
 	}, err
 }
 
-func (s *service) NewMDWManager(cfg *config.Config, logger logger.Logger) (mw MDWManager, err error) {
-	obj, err := s.registry.NewMDWManager(cfg, logger)
+func (s *service) NewMDWManager(cfg *config.Config, logger logger.Logger, pgDB *sqlx.DB) (mw MDWManager, err error) {
+	obj, err := s.registry.NewMDWManager(cfg, logger, pgDB)
 	if err != nil {
 		err = errors.Wrapf(err, "service.NewMDWManager()")
 		return

@@ -25,9 +25,9 @@ type ServiceRegistry interface {
 		controller.CreditCtrl,
 		error,
 	)
-	NewMDWManager(*config.Config, logger.Logger) (middleware.MDWManager, error)
+	NewMDWManager(*config.Config, logger.Logger, *sqlx.DB) (middleware.MDWManager, error)
 	NewLogging(cfg *config.Config, logger logger.Logger) (obj logger.LoggerUC, err error)
-	NewUserReg(cfg *config.Config, pgDB *sqlx.DB) (obj userCtrl.UserCtrl, err error)
+	NewUserReg(cfg *config.Config, pgDB *sqlx.DB, logger logger.Logger) (obj userCtrl.UserCtrl, err error)
 	NewSessionReg(cfg *config.Config, pgDB *sqlx.DB) (obj sessionCtrl.SessionCtrl, err error)
 }
 
@@ -68,8 +68,8 @@ func (r *serviceRegistry) NewCreditReg(cfg *config.Config, logger logger.Logger,
 	return
 }
 
-func (r *serviceRegistry) NewMDWManager(cfg *config.Config, logger logger.Logger) (obj middleware.MDWManager, err error) {
-	obj = r.mw.NewMDWManager(cfg, logger)
+func (r *serviceRegistry) NewMDWManager(cfg *config.Config, logger logger.Logger, pgDB *sqlx.DB) (obj middleware.MDWManager, err error) {
+	obj = r.mw.NewMDWManager(cfg, logger, pgDB)
 	return
 }
 
@@ -78,8 +78,9 @@ func (r *serviceRegistry) NewLogging(cfg *config.Config, logger logger.Logger) (
 	return
 }
 
-func (r *serviceRegistry) NewUserReg(cfg *config.Config, pgDB *sqlx.DB) (obj userCtrl.UserCtrl, err error) {
-	obj, err = r.user.NewUserCtrl(cfg, pgDB)
+func (r *serviceRegistry) NewUserReg(cfg *config.Config, pgDB *sqlx.DB, logger logger.Logger) (obj userCtrl.UserCtrl, err error) {
+	log := r.logging.NewLogging(cfg, logger)
+	obj, err = r.user.NewUserCtrl(cfg, pgDB, log)
 	if err != nil {
 		return
 	}

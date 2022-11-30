@@ -57,7 +57,6 @@ type UpdateCodeDataByID struct {
 }
 
 type AddCodeData struct {
-	ID     int       `json:"id"`
 	Code   string    `json:"code"`
 	Amount float64   `json:"amount"`
 	Date   time.Time `json:"date"`
@@ -66,4 +65,13 @@ type AddCodeData struct {
 type GetCodeDataByIDResponse struct {
 	Amount float64   `db:"amount"`
 	Date   time.Time `db:"date"`
+}
+
+type CreateCustomUserDataTable struct {
+	DBName string `json:"db_name"`
+}
+
+type AddListCodeData struct {
+	Code string
+	Data []AddCodeData `json:"data"`
 }

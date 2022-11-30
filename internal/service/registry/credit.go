@@ -50,9 +50,9 @@ func (c *creditReg) NewCreditRepo(cfg *config.Config, fhttpClient *fhttp.Client,
 	if err != nil {
 		return
 	}
-	err = repo.InitCodeLists()
-	if err != nil {
-		return
-	}
+	//err = repo.InitCodeLists()
+	//if err != nil {
+	//	return
+	//}
 	return
 }

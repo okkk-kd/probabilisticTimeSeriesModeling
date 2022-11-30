@@ -24,6 +24,8 @@ type CreditCtrl interface {
 	DeleteCodeDataByID() fiber.Handler
 	UpdateCodeDataByID() fiber.Handler
 	AddCodeData() fiber.Handler
+	CreateCustomUserDataTable() fiber.Handler
+	AddListCodeData() fiber.Handler
 }
 
 func NewCreditCtrl(creditUC usecase.CreditUC, loggingUC logger.LoggerUC) (obj CreditCtrl, err error) {
@@ -56,7 +58,7 @@ func (ctrl *creditCtrl) ForecastingBankData() fiber.Handler {
 		params.Code = strings.ToLower(ctx.Params("code", params.Code))
 		result, err := ctrl.creditUC.ForecastingBankData(params)
 		if err != nil {
-			err = errors.Wrapf(err, "creditCtrl.RetrieveTwoColumns()")
+			err = errors.Wrapf(err, "creditCtrl.ForecastingBankData()")
 			ctx.Locals("error", err.Error())
 			return ctx.Status(fiber.StatusBadRequest).JSON(err.Error())
 		}
@@ -69,7 +71,7 @@ func (ctrl *creditCtrl) GetCodesList() fiber.Handler {
 		defer ctrl.loggingUC.CreateAPILog(ctx, time.Now())
 		result, err := ctrl.creditUC.GetCodesList(ctx.Context())
 		if err != nil {
-			err = errors.Wrapf(err, "creditCtrl.RetrieveTwoColumns()")
+			err = errors.Wrapf(err, "creditCtrl.GetCodesList()")
 			ctx.Locals("error", err.Error())
 			return ctx.Status(fiber.StatusBadRequest).JSON(err.Error())
 		}
@@ -85,7 +87,7 @@ func (ctrl *creditCtrl) GetCodeDataByID() fiber.Handler {
 		params.Code = strings.ToLower(ctx.Params("code", params.Code))
 		result, err := ctrl.creditUC.GetCodeDataByID(ctx.Context(), params)
 		if err != nil {
-			err = errors.Wrapf(err, "creditCtrl.RetrieveTwoColumns()")
+			err = errors.Wrapf(err, "creditCtrl.GetCodeDataByID()")
 			ctx.Locals("error", err.Error())
 			return ctx.Status(fiber.StatusBadRequest).JSON(err.Error())
 		}
@@ -101,7 +103,7 @@ func (ctrl *creditCtrl) DeleteCodeDataByID() fiber.Handler {
 		params.Code = strings.ToLower(ctx.Params("code", params.Code))
 		err := ctrl.creditUC.DeleteCodeDataByID(ctx.Context(), params)
 		if err != nil {
-			err = errors.Wrapf(err, "creditCtrl.RetrieveTwoColumns()")
+			err = errors.Wrapf(err, "creditCtrl.DeleteCodeDataByID()")
 			ctx.Locals("error", err.Error())
 			return ctx.Status(fiber.StatusBadRequest).JSON(err.Error())
 		}
@@ -119,7 +121,7 @@ func (ctrl *creditCtrl) UpdateCodeDataByID() fiber.Handler {
 		}
 		err = ctrl.creditUC.UpdateCodeDataByID(ctx.Context(), params)
 		if err != nil {
-			err = errors.Wrapf(err, "creditCtrl.RetrieveTwoColumns()")
+			err = errors.Wrapf(err, "creditCtrl.UpdateCodeDataByID()")
 			ctx.Locals("error", err.Error())
 			return ctx.Status(fiber.StatusBadRequest).JSON(err.Error())
 		}
@@ -137,7 +139,44 @@ func (ctrl *creditCtrl) AddCodeData() fiber.Handler {
 		}
 		err = ctrl.creditUC.AddCodeData(ctx.Context(), params)
 		if err != nil {
-			err = errors.Wrapf(err, "creditCtrl.RetrieveTwoColumns()")
+			err = errors.Wrapf(err, "creditCtrl.AddCodeData()")
+			ctx.Locals("error", err.Error())
+			return ctx.Status(fiber.StatusBadRequest).JSON(err.Error())
+		}
+		return ctx.SendStatus(fiber.StatusOK)
+	}
+}
+
+func (ctrl *creditCtrl) CreateCustomUserDataTable() fiber.Handler {
+	return func(ctx *fiber.Ctx) error {
+		var params credit.CreateCustomUserDataTable
+		defer ctrl.loggingUC.CreateAPILog(ctx, time.Now())
+		err := reqvalidator.ReadRequest(ctx, &params)
+		if err != nil {
+			ctx.Status(fiber.StatusBadRequest).JSON(err.Error())
+		}
+		err = ctrl.creditUC.CreateCustomUserDataTable(params.DBName)
+		if err != nil {
+			err = errors.Wrapf(err, "creditCtrl.CreateCustomUserDataTable()")
+			ctx.Locals("error", err.Error())
+			return ctx.Status(fiber.StatusBadRequest).JSON(err.Error())
+		}
+		return ctx.SendStatus(fiber.StatusOK)
+	}
+}
+
+func (ctrl *creditCtrl) AddListCodeData() fiber.Handler {
+	return func(ctx *fiber.Ctx) error {
+		var params credit.AddListCodeData
+		defer ctrl.loggingUC.CreateAPILog(ctx, time.Now())
+		err := reqvalidator.ReadRequest(ctx, &params)
+		if err != nil {
+			ctx.Status(fiber.StatusBadRequest).JSON(err.Error())
+		}
+		params.Code = strings.ToLower(ctx.Params("code", params.Code))
+		err = ctrl.creditUC.AddListCodeData(ctx.Context(), params.Data)
+		if err != nil {
+			err = errors.Wrapf(err, "creditCtrl.AddListCodeData()")
 			ctx.Locals("error", err.Error())
 			return ctx.Status(fiber.StatusBadRequest).JSON(err.Error())
 		}

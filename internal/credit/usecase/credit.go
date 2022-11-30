@@ -20,6 +20,8 @@ type CreditUC interface {
 	DeleteCodeDataByID(ctx context.Context, params credit.DeleteCodeDataByID) (err error)
 	UpdateCodeDataByID(ctx context.Context, params credit.UpdateCodeDataByID) (err error)
 	AddCodeData(ctx context.Context, params credit.AddCodeData) (err error)
+	CreateCustomUserDataTable(dbName string) (err error)
+	AddListCodeData(ctx context.Context, params []credit.AddCodeData) (err error)
 }
 
 func NewCreditUC(repo repository.CreditRepo) (obj CreditUC, err error) {
@@ -95,6 +97,21 @@ func (uc *creditUC) UpdateCodeDataByID(ctx context.Context, params credit.Update
 
 func (uc *creditUC) AddCodeData(ctx context.Context, params credit.AddCodeData) (err error) {
 	err = uc.repo.AddCodeData(ctx, params)
+	if err != nil {
+		return
+	}
+	return
+}
+
+func (uc *creditUC) CreateCustomUserDataTable(dbName string) (err error) {
+	err = uc.repo.CreateCustomUserDataTable(dbName)
+	if err != nil {
+		return
+	}
+	return
+}
+func (uc *creditUC) AddListCodeData(ctx context.Context, params []credit.AddCodeData) (err error) {
+	err = uc.repo.AddListCodeData(ctx, params)
 	if err != nil {
 		return
 	}

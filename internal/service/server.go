@@ -48,7 +48,7 @@ func (s *server) RunServer() (err error) {
 		return
 	}
 	//utils
-	mw, err := newService.NewMDWManager(s.config, s.logger)
+	mw, err := newService.NewMDWManager(s.config, s.logger, s.pgDB)
 	_, err = newService.NewLogger(s.config, s.logger)
 	if err != nil {
 		log.Fatalln(err.Error())

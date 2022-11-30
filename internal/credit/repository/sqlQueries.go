@@ -20,6 +20,9 @@ alter table codes.%s
 create unique index %s_id_uindex
     on codes.%s (id);
 `
+	queryInsertTableIntoTableList = `
+insert into codes.codes(name, code) values ($1, $2)
+`
 	queryInsertDataIntoCodesDataTable = `
 insert into codes.%s (amount, date) values($1, $2)
 `
