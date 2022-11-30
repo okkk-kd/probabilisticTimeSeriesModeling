@@ -8,7 +8,8 @@ import (
 	"github.com/jmoiron/sqlx"
 	"log"
 	"probabilisticTimeSeriesModeling/config"
-	"probabilisticTimeSeriesModeling/internal/credit/controller"
+	creditCtrl "probabilisticTimeSeriesModeling/internal/credit/controller"
+	userCtrl "probabilisticTimeSeriesModeling/internal/users/controller"
 	"probabilisticTimeSeriesModeling/pkg/logger"
 )
 
@@ -69,8 +70,10 @@ func (s *server) RunServer() (err error) {
 	//routing
 	api := s.app.Group("/api")
 	creditRoute := api.Group("/credit")
+	userRoute := api.Group("/user")
 
-	controller.CreditRoutesGroup(mw.MDWManager, creditRoute, controllers.Credit)
+	creditCtrl.CreditRoutesGroup(mw.MDWManager, creditRoute, controllers.Credit)
+	userCtrl.UserRoutesGroup(mw.MDWManager, userRoute, controllers.User)
 
 	return
 }
