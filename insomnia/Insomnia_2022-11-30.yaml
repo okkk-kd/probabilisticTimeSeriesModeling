@@ -1,0 +1,1857 @@
+_type: export
+__export_format: 4
+__export_date: 2022-11-30T19:51:58.257Z
+__export_source: insomnia.desktop.app:v2022.6.0
+resources:
+  - _id: req_4c7b4b4b2a9947f0aca6d205d0a3c317
+    parentId: fld_c32586bed96449cd9f61b5db01a425a1
+    modified: 1669837555984
+    created: 1669836167612
+    url: "{{ _.host }}{{ _.creditRout }}{{ _.code }}/retrieve_two_columns/"
+    name: RetrieveTwoColumns
+    description: >-
+      ```
+
+      {
+      	"dataset": {
+      		"id": 11827575,
+      		"dataset_code": "AME_A_FIN_1_0_99_0_XNE",
+      		"database_code": "ECB",
+      		"name": "Finland ECU-EUR exchange rates :Units of national currency per EUR/ECU Annual average, 1 ECU/EUR = ... units of national currency AMECO data class: Exchange rates",
+      		"description": "Title Complement: Finland - ECU-EUR exchange rates (annual averages) :- Units of national currency per EUR/ECU - Annual average, 1 ECU/EUR = ... units of national currency - AMECO data class: Exchange rates , :, Dataset:AME : AMECO Explanation page (Series and Dataset Level Information), Ameco reference area:Finland (FIN), External title:Finland - ECU-EUR exchange rates (annual averages) :- Units of national currency per EUR/ECU",
+      		"refreshed_at": "2014-10-07T21:09:05.442Z",
+      		"newest_available_date": "2015-12-31",
+      		"oldest_available_date": "1960-12-31",
+      		"column_names": [
+      			"Date",
+      			"Annual average, 1 ECU/EUR = ... units of national currency"
+      		],
+      		"frequency": "annual",
+      		"type": "Time Series",
+      		"premium": false,
+      		"limit": null,
+      		"transform": null,
+      		"column_index": 1,
+      		"start_date": "1960-12-31",
+      		"end_date": "2015-12-31",
+      		"data": [
+      			[
+      				"2015-12-31",
+      				1
+      			],
+      			[
+      				"2014-12-31",
+      				1
+      			],
+      			[
+      				"2013-12-31",
+      				1
+      			],
+      			[
+      				"2012-12-31",
+      				1
+      			],
+      			[
+      				"2011-12-31",
+      				1
+      			],
+      			[
+      				"2010-12-31",
+      				1
+      			],
+      			[
+      				"2009-12-31",
+      				1
+      			],
+      			[
+      				"2008-12-31",
+      				1
+      			],
+      			[
+      				"2007-12-31",
+      				1
+      			],
+      			[
+      				"2006-12-31",
+      				1
+      			],
+      			[
+      				"2005-12-31",
+      				1
+      			],
+      			[
+      				"2004-12-31",
+      				1
+      			],
+      			[
+      				"2003-12-31",
+      				1
+      			],
+      			[
+      				"2002-12-31",
+      				1
+      			],
+      			[
+      				"2001-12-31",
+      				1
+      			],
+      			[
+      				"2000-12-31",
+      				1
+      			],
+      			[
+      				"1999-12-31",
+      				1
+      			],
+      			[
+      				"1998-12-31",
+      				1.006186
+      			],
+      			[
+      				"1997-12-31",
+      				0.9890526
+      			],
+      			[
+      				"1996-12-31",
+      				0.9802278
+      			],
+      			[
+      				"1995-12-31",
+      				0.9601092
+      			],
+      			[
+      				"1994-12-31",
+      				1.0412128
+      			],
+      			[
+      				"1993-12-31",
+      				1.1262334
+      			],
+      			[
+      				"1992-12-31",
+      				0.9766723
+      			],
+      			[
+      				"1991-12-31",
+      				0.8412945
+      			],
+      			[
+      				"1990-12-31",
+      				0.8165457
+      			],
+      			[
+      				"1989-12-31",
+      				0.7943533
+      			],
+      			[
+      				"1988-12-31",
+      				0.8314572
+      			],
+      			[
+      				"1987-12-31",
+      				0.8519021
+      			],
+      			[
+      				"1986-12-31",
+      				0.8375321
+      			],
+      			[
+      				"1985-12-31",
+      				0.7895128
+      			],
+      			[
+      				"1984-12-31",
+      				0.7945332
+      			],
+      			[
+      				"1983-12-31",
+      				0.8322258
+      			],
+      			[
+      				"1982-12-31",
+      				0.7916959
+      			],
+      			[
+      				"1981-12-31",
+      				0.8061214
+      			],
+      			[
+      				"1980-12-31",
+      				0.8699083
+      			],
+      			[
+      				"1979-12-31",
+      				0.8950995
+      			],
+      			[
+      				"1978-12-31",
+      				0.8810541
+      			],
+      			[
+      				"1977-12-31",
+      				0.7725611
+      			],
+      			[
+      				"1976-12-31",
+      				0.7250901
+      			],
+      			[
+      				"1975-12-31",
+      				0.764288
+      			],
+      			[
+      				"1974-12-31",
+      				0.7629812
+      			],
+      			[
+      				"1973-12-31",
+      				0.7916084
+      			],
+      			[
+      				"1972-12-31",
+      				0.7822807
+      			],
+      			[
+      				"1971-12-31",
+      				0.7373695
+      			],
+      			[
+      				"1970-12-31",
+      				0.7220896
+      			],
+      			[
+      				"1969-12-31",
+      				0.7220619
+      			],
+      			[
+      				"1968-12-31",
+      				0.7267969
+      			],
+      			[
+      				"1967-12-31",
+      				0.6178584
+      			],
+      			[
+      				"1966-12-31",
+      				0.5757745
+      			],
+      			[
+      				"1965-12-31",
+      				0.5757073
+      			],
+      			[
+      				"1964-12-31",
+      				0.5757729
+      			],
+      			[
+      				"1963-12-31",
+      				0.5757729
+      			],
+      			[
+      				"1962-12-31",
+      				0.5757729
+      			],
+      			[
+      				"1961-12-31",
+      				0.5744459
+      			],
+      			[
+      				"1960-12-31",
+      				0.5684533
+      			]
+      		],
+      		"collapse": null,
+      		"order": null,
+      		"database_id": 8917
+      	}
+      }
+
+      ```
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: API-Key
+        value: "{{ _['api-key'] }}"
+      - name: Authorization
+        value: "{{ _.authorization }}"
+    authentication: {}
+    metaSortKey: -1669836167612
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_c32586bed96449cd9f61b5db01a425a1
+    parentId: wrk_edaabf24412d4f0cb042a43402c29c76
+    modified: 1669836165171
+    created: 1669836165171
+    name: credit
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1669836165171
+    _type: request_group
+  - _id: wrk_edaabf24412d4f0cb042a43402c29c76
+    parentId: null
+    modified: 1669836116500
+    created: 1669836116500
+    name: my-spec.yaml
+    description: ""
+    scope: design
+    _type: workspace
+  - _id: req_b7ab3c326ab54ab99e7981abcd2ed64a
+    parentId: fld_c32586bed96449cd9f61b5db01a425a1
+    modified: 1669837595793
+    created: 1669836422026
+    url: "{{ _.host }}{{ _.creditRout }}{{ _.code }}{{ _.years }}/bank_forecast"
+    name: ForecastingBankData
+    description: |-
+      ```
+      {
+      	"Points": {
+      		"2010": [
+      			{
+      				"MidPrice": 0.5684533,
+      				"Date": "2010-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.5761594910714286,
+      				"Date": "2010-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.5838656821428572,
+      				"Date": "2010-12-31T00:00:00Z"
+      			}
+      		],
+      		"2011": [
+      			{
+      				"MidPrice": 0.5915718732142857,
+      				"Date": "2011-03-31T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.5992780642857143,
+      				"Date": "2011-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.606984255357143,
+      				"Date": "2011-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.6146904464285715,
+      				"Date": "2011-12-31T00:00:00Z"
+      			}
+      		],
+      		"2012": [
+      			{
+      				"MidPrice": 0.6223966375000001,
+      				"Date": "2012-03-31T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.6301028285714286,
+      				"Date": "2012-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.6378090196428572,
+      				"Date": "2012-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.6455152107142857,
+      				"Date": "2012-12-31T00:00:00Z"
+      			}
+      		],
+      		"2013": [
+      			{
+      				"MidPrice": 0.6532214017857143,
+      				"Date": "2013-03-31T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.6609275928571429,
+      				"Date": "2013-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.6686337839285714,
+      				"Date": "2013-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.6763399750000001,
+      				"Date": "2013-12-31T00:00:00Z"
+      			}
+      		],
+      		"2014": [
+      			{
+      				"MidPrice": 0.6840461660714287,
+      				"Date": "2014-03-31T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.6917523571428572,
+      				"Date": "2014-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.6994585482142858,
+      				"Date": "2014-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.7071647392857143,
+      				"Date": "2014-12-31T00:00:00Z"
+      			}
+      		],
+      		"2015": [
+      			{
+      				"MidPrice": 0.7148709303571429,
+      				"Date": "2015-03-31T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.7225771214285714,
+      				"Date": "2015-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.7302833125,
+      				"Date": "2015-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.7379895035714286,
+      				"Date": "2015-12-31T00:00:00Z"
+      			}
+      		],
+      		"2016": [
+      			{
+      				"MidPrice": 0.7456956946428572,
+      				"Date": "2016-03-31T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.7534018857142857,
+      				"Date": "2016-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.7611080767857143,
+      				"Date": "2016-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.7688142678571429,
+      				"Date": "2016-12-31T00:00:00Z"
+      			}
+      		],
+      		"2017": [
+      			{
+      				"MidPrice": 0.7765204589285715,
+      				"Date": "2017-03-31T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.78422665,
+      				"Date": "2017-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.7919328410714286,
+      				"Date": "2017-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.7996390321428571,
+      				"Date": "2017-12-31T00:00:00Z"
+      			}
+      		],
+      		"2018": [
+      			{
+      				"MidPrice": 0.8073452232142857,
+      				"Date": "2018-03-31T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.8150514142857144,
+      				"Date": "2018-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.8227576053571428,
+      				"Date": "2018-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.8304637964285715,
+      				"Date": "2018-12-31T00:00:00Z"
+      			}
+      		],
+      		"2019": [
+      			{
+      				"MidPrice": 0.8381699875,
+      				"Date": "2019-03-31T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.8458761785714286,
+      				"Date": "2019-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.8535823696428572,
+      				"Date": "2019-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.8612885607142857,
+      				"Date": "2019-12-31T00:00:00Z"
+      			}
+      		],
+      		"2020": [
+      			{
+      				"MidPrice": 0.8689947517857144,
+      				"Date": "2020-03-31T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.8767009428571428,
+      				"Date": "2020-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.8844071339285715,
+      				"Date": "2020-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.892113325,
+      				"Date": "2020-12-31T00:00:00Z"
+      			}
+      		],
+      		"2021": [
+      			{
+      				"MidPrice": 0.8998195160714286,
+      				"Date": "2021-03-31T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.9075257071428572,
+      				"Date": "2021-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.9152318982142857,
+      				"Date": "2021-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.9229380892857143,
+      				"Date": "2021-12-31T00:00:00Z"
+      			}
+      		],
+      		"2022": [
+      			{
+      				"MidPrice": 0.9306442803571429,
+      				"Date": "2022-03-31T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.9383504714285714,
+      				"Date": "2022-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.9460566625,
+      				"Date": "2022-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.9537628535714286,
+      				"Date": "2022-12-31T00:00:00Z"
+      			}
+      		],
+      		"2023": [
+      			{
+      				"MidPrice": 0.9614690446428571,
+      				"Date": "2023-03-31T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.9691752357142858,
+      				"Date": "2023-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.9768814267857143,
+      				"Date": "2023-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 0.9845876178571429,
+      				"Date": "2023-12-31T00:00:00Z"
+      			}
+      		],
+      		"2024": [
+      			{
+      				"MidPrice": 0.9922938089285714,
+      				"Date": "2024-03-31T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1,
+      				"Date": "2024-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.0077061910714287,
+      				"Date": "2024-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.0154123821428571,
+      				"Date": "2024-12-31T00:00:00Z"
+      			}
+      		],
+      		"2025": [
+      			{
+      				"MidPrice": 1.0231185732142858,
+      				"Date": "2025-03-31T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.0308247642857142,
+      				"Date": "2025-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.038530955357143,
+      				"Date": "2025-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.0462371464285716,
+      				"Date": "2025-12-31T00:00:00Z"
+      			}
+      		],
+      		"2026": [
+      			{
+      				"MidPrice": 1.0539433375,
+      				"Date": "2026-03-31T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.0616495285714285,
+      				"Date": "2026-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.0693557196428571,
+      				"Date": "2026-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.0770619107142858,
+      				"Date": "2026-12-31T00:00:00Z"
+      			}
+      		],
+      		"2027": [
+      			{
+      				"MidPrice": 1.0847681017857143,
+      				"Date": "2027-03-31T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.0924742928571427,
+      				"Date": "2027-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.1001804839285714,
+      				"Date": "2027-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.107886675,
+      				"Date": "2027-12-31T00:00:00Z"
+      			}
+      		],
+      		"2028": [
+      			{
+      				"MidPrice": 1.1155928660714287,
+      				"Date": "2028-03-31T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.1232990571428572,
+      				"Date": "2028-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.1310052482142856,
+      				"Date": "2028-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.1387114392857143,
+      				"Date": "2028-12-31T00:00:00Z"
+      			}
+      		],
+      		"2029": [
+      			{
+      				"MidPrice": 1.146417630357143,
+      				"Date": "2029-03-31T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.1541238214285714,
+      				"Date": "2029-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.1618300124999998,
+      				"Date": "2029-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.1695362035714285,
+      				"Date": "2029-12-31T00:00:00Z"
+      			}
+      		],
+      		"2030": [
+      			{
+      				"MidPrice": 1.1772423946428572,
+      				"Date": "2030-03-31T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.1849485857142859,
+      				"Date": "2030-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.1926547767857143,
+      				"Date": "2030-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.2003609678571427,
+      				"Date": "2030-12-31T00:00:00Z"
+      			}
+      		],
+      		"2031": [
+      			{
+      				"MidPrice": 1.2080671589285714,
+      				"Date": "2031-03-31T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.21577335,
+      				"Date": "2031-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.2234795410714285,
+      				"Date": "2031-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.231185732142857,
+      				"Date": "2031-12-31T00:00:00Z"
+      			}
+      		],
+      		"2032": [
+      			{
+      				"MidPrice": 1.2388919232142857,
+      				"Date": "2032-03-31T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.2465981142857143,
+      				"Date": "2032-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.254304305357143,
+      				"Date": "2032-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.2620104964285714,
+      				"Date": "2032-12-31T00:00:00Z"
+      			}
+      		],
+      		"2033": [
+      			{
+      				"MidPrice": 1.2697166874999999,
+      				"Date": "2033-03-31T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.2774228785714286,
+      				"Date": "2033-06-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.2851290696428572,
+      				"Date": "2033-09-30T00:00:00Z"
+      			},
+      			{
+      				"MidPrice": 1.2928352607142857,
+      				"Date": "2033-12-31T00:00:00Z"
+      			}
+      		]
+      	}
+      }
+      ```
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: API-Key
+        value: "{{ _['api-key'] }}"
+      - name: Authorization
+        value: "{{ _.authorization }}"
+    authentication: {}
+    metaSortKey: -1668576144864
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_dd48820947134226afef83c0777dfbd9
+    parentId: fld_c32586bed96449cd9f61b5db01a425a1
+    modified: 1669837868592
+    created: 1669836429979
+    url: "{{ _.host }}{{ _.creditRout }}/bank_forecast"
+    name: GetCodesList
+    description: |-
+      ```
+      [
+      	{
+      		"ID": 1,
+      		"Name": "Austria ECU-EUR exchange rates",
+      		"Code": "AME_A_AUT_1_0_99_0_XNE"
+      	},
+      	{
+      		"ID": 2,
+      		"Name": "Belgium ECU-EUR exchange rates",
+      		"Code": "AME_A_BEL_1_0_99_0_XNE"
+      	},
+      	{
+      		"ID": 3,
+      		"Name": "FR. Germany ECU-EUR exchange rates",
+      		"Code": "AME_A_DEU_1_0_99_0_XNE"
+      	},
+      	{
+      		"ID": 4,
+      		"Name": "West Germany ECU-EUR exchange rates",
+      		"Code": "AME_A_D_W_1_0_99_0_XNE"
+      	},
+      	{
+      		"ID": 5,
+      		"Name": "Spain ECU-EUR exchange rates",
+      		"Code": "AME_A_ESP_1_0_99_0_XNE"
+      	},
+      	{
+      		"ID": 6,
+      		"Name": "Finland ECU-EUR exchange rates ",
+      		"Code": "AME_A_FIN_1_0_99_0_XNE"
+      	},
+      	{
+      		"ID": 7,
+      		"Name": "France ECU-EUR exchange rates",
+      		"Code": "AME_A_FRA_1_0_99_0_XNE"
+      	},
+      	{
+      		"ID": 8,
+      		"Name": "Greece ECU-EUR exchange rates",
+      		"Code": "AME_A_GRC_1_0_99_0_XNE"
+      	},
+      	{
+      		"ID": 9,
+      		"Name": "Ireland ECU-EUR exchange rates",
+      		"Code": "AME_A_IRL_1_0_99_0_XNE"
+      	},
+      	{
+      		"ID": 10,
+      		"Name": "Italy ECU-EUR exchange rates",
+      		"Code": "AME_A_ITA_1_0_99_0_XNE"
+      	}
+      ]
+      ```
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: API-Key
+        value: "{{ _['api-key'] }}"
+      - name: Authorization
+        value: "{{ _.authorization }}"
+    authentication: {}
+    metaSortKey: -1667946133490
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a5e2a4d0bf5048b085c539f540997820
+    parentId: fld_c32586bed96449cd9f61b5db01a425a1
+    modified: 1669837872332
+    created: 1669836488402
+    url: "{{ _.host }}{{ _.creditRout }}{{ _.id }}{{ _.code }}/get_code_data"
+    name: GetCodeDataByID
+    description: |-
+      ```
+      {
+      	"Amount": 1,
+      	"Date": "2015-12-31T00:00:00Z"
+      }
+      ```
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: API-Key
+        value: "{{ _['api-key'] }}"
+      - name: Authorization
+        value: "{{ _.authorization }}"
+    authentication: {}
+    metaSortKey: -1667631127803
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_3f59b3db6aed49208bc29a1de78a0da1
+    parentId: fld_c32586bed96449cd9f61b5db01a425a1
+    modified: 1669837663256
+    created: 1669836678309
+    url: "{{ _.host }}{{ _.creditRout }}{{ _.id }}{{ _.code }}/code"
+    name: DeleteCodeDataByID
+    description: |-
+      ```
+      OK
+      ```
+    method: DELETE
+    body: {}
+    parameters: []
+    headers:
+      - name: API-Key
+        value: "{{ _['api-key'] }}"
+      - name: Authorization
+        value: "{{ _.authorization }}"
+    authentication: {}
+    metaSortKey: -1667552376381.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_315905e560444d28b907ef7bc407ca59
+    parentId: fld_c32586bed96449cd9f61b5db01a425a1
+    modified: 1669837830295
+    created: 1669836505910
+    url: "{{ _.host }}{{ _.creditRout }}/code"
+    name: UpdateCodeDataByID
+    description: |-
+      ```
+      OK
+      ```
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"id": 1,
+        	"code": "",
+        	"amount": "",
+        	"date": ""
+        }
+    parameters: []
+    headers:
+      - name: API-Key
+        value: "{{ _['api-key'] }}"
+      - name: Authorization
+        value: "{{ _.authorization }}"
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1667473624959.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_5ead0fbe85a944c0ba99a9cb9d1e7742
+    parentId: fld_c32586bed96449cd9f61b5db01a425a1
+    modified: 1669837829736
+    created: 1669836513240
+    url: "{{ _.host }}{{ _.creditRout }}/code_data"
+    name: AddCodeData
+    description: |-
+      ```
+      OK
+      ```
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"code": "AME_A_FIN_1_0_99_0_XNE",
+        	"amount": 123,
+        	"date": "2016-12-12"
+        }
+    parameters: []
+    headers:
+      - name: API-Key
+        value: "{{ _['api-key'] }}"
+      - name: Authorization
+        value: "{{ _.authorization }}"
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1667394873537.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_e5b24e5f4d0a4dab9344a88425c42b44
+    parentId: fld_c32586bed96449cd9f61b5db01a425a1
+    modified: 1669837832285
+    created: 1669836517119
+    url: "{{ _.host }}{{ _.creditRout }}/create_table"
+    name: CreateCustomUserDataTable
+    description: |-
+      ```
+      OK
+      ```
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"db_name": "qwer"
+        }
+    parameters: []
+    headers:
+      - name: API-Key
+        value: "{{ _['api-key'] }}"
+      - name: Authorization
+        value: "{{ _.authorization }}"
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1667355497826.875
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_007f252385ea426ebc8033eaeb08e4d6
+    parentId: fld_c32586bed96449cd9f61b5db01a425a1
+    modified: 1669837833189
+    created: 1669836521409
+    url: "{{ _.host }}{{ _.creditRout }}{{ _.code }}/code_data_list"
+    name: AddListCodeData
+    description: |-
+      ```
+      OK
+      ```
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"code": "AME_A_FIN_1_0_99_0_XNE",
+        	"data": [
+        		{
+        			"code": "AME_A_FIN_1_0_99_0_XNE",
+        			"amount": 123,
+        			"date": "2016-12-12"
+        		},
+        		{
+        			"code": "AME_A_FIN_1_0_99_0_XNE",
+        			"amount": 123,
+        			"date": "2016-12-12"
+        		},
+        		{
+        			"code": "AME_A_FIN_1_0_99_0_XNE",
+        			"amount": 123,
+        			"date": "2016-12-12"
+        		}
+        	]
+        }
+    parameters: []
+    headers:
+      - name: API-Key
+        value: "{{ _['api-key'] }}"
+      - name: Authorization
+        value: "{{ _.authorization }}"
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1667335809971.4375
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a49d3e201e1f4806991e0385f9ac43ab
+    parentId: fld_864134fcc13145d2bf07f51cdd8b6ca9
+    modified: 1669837844556
+    created: 1669836768520
+    url: "{{ _.host }}{{ _.userRout }}/registration"
+    name: CreateUser
+    description: |-
+      ```
+      OK
+      ```
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "user_name": "test2",
+            "password": "test"
+        }
+    parameters: []
+    headers:
+      - name: API-Key
+        value: "{{ _['api-key'] }}"
+      - name: Authorization
+        value: "{{ _.authorization }}"
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1669836768520
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_864134fcc13145d2bf07f51cdd8b6ca9
+    parentId: wrk_edaabf24412d4f0cb042a43402c29c76
+    modified: 1669836157420
+    created: 1669836157420
+    name: users
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1669836157420
+    _type: request_group
+  - _id: req_cb4f949c0d534b18ad34e546fff1e30a
+    parentId: fld_864134fcc13145d2bf07f51cdd8b6ca9
+    modified: 1669837856242
+    created: 1669836794437
+    url: "{{ _.host }}{{ _.userRout }}/authorization"
+    name: Authorization
+    description: |-
+      ```
+      {
+      	"session_key": "494761e5-70e8-11ed-bed5-18c04ded7ea2"
+      }
+      ```
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "user_name": "test",
+            "password": "test"
+        }
+    parameters: []
+    headers:
+      - name: API-Key
+        value: "{{ _['api-key'] }}"
+      - name: Authorization
+        value: "{{ _.authorization }}"
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1669836468066
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_d0cfcb548c4641438ea61c3dd2f44a4f
+    parentId: fld_864134fcc13145d2bf07f51cdd8b6ca9
+    modified: 1669837882838
+    created: 1669836799236
+    url: "{{ _.host }}{{ _.userRout }}/update_password"
+    name: UpdateUserPassword
+    description: |-
+      ```
+      OK
+      ```
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "user_name": "test",
+            "new_password": "new_test",
+            "current_password": "test"
+        }
+    parameters: []
+    headers:
+      - name: API-Key
+        value: "{{ _['api-key'] }}"
+      - name: Authorization
+        value: "{{ _.authorization }}"
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1669836317839
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_0040731bcfa152dd7714b5ac908de5ecf4549cbb
+    parentId: wrk_edaabf24412d4f0cb042a43402c29c76
+    modified: 1669836116503
+    created: 1669836116503
+    name: Base Environment
+    data:
+      base_url: "{{ scheme }}://{{ host }}{{ base_path }}"
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1669836116503
+    _type: environment
+  - _id: jar_0040731bcfa152dd7714b5ac908de5ecf4549cbb
+    parentId: wrk_edaabf24412d4f0cb042a43402c29c76
+    modified: 1669836116503
+    created: 1669836116503
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_cda2ab66110e46068478502189f8b5fd
+    parentId: wrk_edaabf24412d4f0cb042a43402c29c76
+    modified: 1669836140363
+    created: 1669836116501
+    fileName: my-spec.yaml
+    contents: >-
+      openapi: 3.0.0
+
+      info:
+        description: "This is a sample server Petstore server.  You can find out more about
+          Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net,
+          #swagger](http://swagger.io/irc/).  For this sample, you can use the api key
+          `special-key` to test the authorization filters."
+        version: 1.0.2
+        title: Swagger Petstore
+        termsOfService: http://swagger.io/terms/
+        contact:
+          email: apiteam@swagger.io
+        license:
+          name: Apache 2.0
+          url: http://www.apache.org/licenses/LICENSE-2.0.html
+      tags:
+        - name: pet
+          description: Everything about your Pets
+          externalDocs:
+            description: Find out more
+            url: http://swagger.io
+        - name: store
+          description: Access to Petstore orders
+        - name: user
+          description: Operations about user
+          externalDocs:
+            description: Find out more about our store
+            url: http://swagger.io
+      paths:
+        /pet:
+          post:
+            tags:
+              - pet
+            summary: Add a new pet to the store
+            description: ""
+            operationId: addPet
+            requestBody:
+              $ref: "#/components/requestBodies/Pet"
+            responses:
+              "405":
+                description: Invalid input
+          put:
+            tags:
+              - pet
+            summary: Update an existing pet
+            description: ""
+            operationId: updatePet
+            requestBody:
+              $ref: "#/components/requestBodies/Pet"
+            responses:
+              "400":
+                description: Invalid ID supplied
+              "404":
+                description: Pet not found
+              "405":
+                description: Validation exception
+        /pet/findByStatus:
+          get:
+            tags:
+              - pet
+            summary: Finds Pets by status
+            description: Multiple status values can be provided with comma separated strings
+            operationId: findPetsByStatus
+            parameters:
+              - name: status
+                in: query
+                description: Status values that need to be considered for filter
+                required: true
+                explode: true
+                schema:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                      - available
+                      - pending
+                      - sold
+                    default: available
+            responses:
+              "200":
+                description: successful operation
+                content:
+                  application/xml:
+                    schema:
+                      type: array
+                      items:
+                        $ref: "#/components/schemas/Pet"
+                  application/json:
+                    schema:
+                      type: array
+                      items:
+                        $ref: "#/components/schemas/Pet"
+              "400":
+                description: Invalid status value
+        /pet/findByTags:
+          get:
+            tags:
+              - pet
+            summary: Finds Pets by tags
+            description: Multiple tags can be provided with comma separated strings. Use tag1,
+              tag2, tag3 for testing.
+            operationId: findPetsByTags
+            parameters:
+              - name: tags
+                in: query
+                description: Tags to filter by
+                required: true
+                explode: true
+                schema:
+                  type: array
+                  items:
+                    type: string
+            responses:
+              "200":
+                description: successful operation
+                content:
+                  application/xml:
+                    schema:
+                      type: array
+                      items:
+                        $ref: "#/components/schemas/Pet"
+                  application/json:
+                    schema:
+                      type: array
+                      items:
+                        $ref: "#/components/schemas/Pet"
+              "400":
+                description: Invalid tag value
+            deprecated: true
+        "/pet/{petId}":
+          get:
+            tags:
+              - pet
+            summary: Find pet by ID
+            description: Returns a single pet
+            operationId: getPetById
+            parameters:
+              - name: petId
+                in: path
+                description: ID of pet to return
+                required: true
+                schema:
+                  type: integer
+                  format: int64
+            responses:
+              "200":
+                description: successful operation
+                content:
+                  application/xml:
+                    schema:
+                      $ref: "#/components/schemas/Pet"
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Pet"
+              "400":
+                description: Invalid ID supplied
+              "404":
+                description: Pet not found
+          post:
+            tags:
+              - pet
+            summary: Updates a pet in the store with form data
+            description: ""
+            operationId: updatePetWithForm
+            parameters:
+              - name: petId
+                in: path
+                description: ID of pet that needs to be updated
+                required: true
+                schema:
+                  type: integer
+                  format: int64
+            requestBody:
+              content:
+                application/x-www-form-urlencoded:
+                  schema:
+                    type: object
+                    properties:
+                      name:
+                        description: Updated name of the pet
+                        type: string
+                      status:
+                        description: Updated status of the pet
+                        type: string
+            responses:
+              "405":
+                description: Invalid input
+          delete:
+            tags:
+              - pet
+            summary: Deletes a pet
+            description: ""
+            operationId: deletePet
+            parameters:
+              - name: api_key
+                in: header
+                required: false
+                schema:
+                  type: string
+              - name: petId
+                in: path
+                description: Pet id to delete
+                required: true
+                schema:
+                  type: integer
+                  format: int64
+            responses:
+              "400":
+                description: Invalid ID supplied
+              "404":
+                description: Pet not found
+        /store/inventory:
+          get:
+            tags:
+              - store
+            summary: Returns pet inventories by status
+            description: Returns a map of status codes to quantities
+            operationId: getInventory
+            responses:
+              "200":
+                description: successful operation
+                content:
+                  application/json:
+                    schema:
+                      type: object
+                      additionalProperties:
+                        type: integer
+                        format: int32
+        /store/order:
+          post:
+            tags:
+              - store
+            summary: Place an order for a pet
+            description: ""
+            operationId: placeOrder
+            requestBody:
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/Order"
+              description: order placed for purchasing the pet
+              required: true
+            responses:
+              "200":
+                description: successful operation
+                content:
+                  application/xml:
+                    schema:
+                      $ref: "#/components/schemas/Order"
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Order"
+              "400":
+                description: Invalid Order
+        "/store/order/{orderId}":
+          get:
+            tags:
+              - store
+            summary: Find purchase order by ID
+            description: For valid response try integer IDs with value >= 1 and <= 10. Other
+              values will generated exceptions
+            operationId: getOrderById
+            parameters:
+              - name: orderId
+                in: path
+                description: ID of pet that needs to be fetched
+                required: true
+                schema:
+                  type: integer
+                  format: int64
+                  minimum: 1
+                  maximum: 10
+            responses:
+              "200":
+                description: successful operation
+                content:
+                  application/xml:
+                    schema:
+                      $ref: "#/components/schemas/Order"
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Order"
+              "400":
+                description: Invalid ID supplied
+              "404":
+                description: Order not found
+          delete:
+            tags:
+              - store
+            summary: Delete purchase order by ID
+            description: For valid response try integer IDs with positive integer value. Negative
+              or non-integer values will generate API errors
+            operationId: deleteOrder
+            parameters:
+              - name: orderId
+                in: path
+                description: ID of the order that needs to be deleted
+                required: true
+                schema:
+                  type: integer
+                  format: int64
+                  minimum: 1
+            responses:
+              "400":
+                description: Invalid ID supplied
+              "404":
+                description: Order not found
+        /user:
+          post:
+            tags:
+              - user
+            summary: Create user
+            description: This can only be done by the logged in user.
+            operationId: createUser
+            requestBody:
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/User"
+              description: Created user object
+              required: true
+            responses:
+              default:
+                description: successful operation
+        /user/createWithArray:
+          post:
+            tags:
+              - user
+            summary: Creates list of users with given input array
+            description: ""
+            operationId: createUsersWithArrayInput
+            requestBody:
+              $ref: "#/components/requestBodies/UserArray"
+            responses:
+              default:
+                description: successful operation
+        /user/createWithList:
+          post:
+            tags:
+              - user
+            summary: Creates list of users with given input array
+            description: ""
+            operationId: createUsersWithListInput
+            requestBody:
+              $ref: "#/components/requestBodies/UserArray"
+            responses:
+              default:
+                description: successful operation
+        /user/login:
+          get:
+            tags:
+              - user
+            summary: Logs user into the system
+            description: ""
+            operationId: loginUser
+            parameters:
+              - name: username
+                in: query
+                description: The user name for login
+                required: true
+                schema:
+                  type: string
+              - name: password
+                in: query
+                description: The password for login in clear text
+                required: true
+                schema:
+                  type: string
+            responses:
+              "200":
+                description: successful operation
+                headers:
+                  X-Rate-Limit:
+                    description: calls per hour allowed by the user
+                    schema:
+                      type: integer
+                      format: int32
+                  X-Expires-After:
+                    description: date in UTC when token expires
+                    schema:
+                      type: string
+                      format: date-time
+                content:
+                  application/xml:
+                    schema:
+                      type: string
+                  application/json:
+                    schema:
+                      type: string
+              "400":
+                description: Invalid username/password supplied
+        /user/logout:
+          get:
+            tags:
+              - user
+            summary: Logs out current logged in user session
+            description: ""
+            operationId: logoutUser
+            responses:
+              default:
+                description: successful operation
+        "/user/{username}":
+          get:
+            tags:
+              - user
+            summary: Get user by user name
+            description: ""
+            operationId: getUserByName
+            parameters:
+              - name: username
+                in: path
+                description: "The name that needs to be fetched. Use user1 for testing. "
+                required: true
+                schema:
+                  type: string
+            responses:
+              "200":
+                description: successful operation
+                content:
+                  application/xml:
+                    schema:
+                      $ref: "#/components/schemas/User"
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/User"
+              "400":
+                description: Invalid username supplied
+              "404":
+                description: User not found
+          put:
+            tags:
+              - user
+            summary: Updated user
+            description: This can only be done by the logged in user.
+            operationId: updateUser
+            parameters:
+              - name: username
+                in: path
+                description: name that need to be updated
+                required: true
+                schema:
+                  type: string
+            requestBody:
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/User"
+              description: Updated user object
+              required: true
+            responses:
+              "400":
+                description: Invalid user supplied
+              "404":
+                description: User not found
+          delete:
+            tags:
+              - user
+            summary: Delete user
+            description: This can only be done by the logged in user.
+            operationId: deleteUser
+            parameters:
+              - name: username
+                in: path
+                description: The name that needs to be deleted
+                required: true
+                schema:
+                  type: string
+            responses:
+              "400":
+                description: Invalid username supplied
+              "404":
+                description: User not found
+      externalDocs:
+        description: Find out more about Swagger
+        url: http://swagger.io
+      servers:
+        - url: https://petstore.swagger.io/v2
+      components:
+        requestBodies:
+          UserArray:
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/User"
+            description: List of user object
+            required: true
+          Pet:
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Pet"
+              application/xml:
+                schema:
+                  $ref: "#/components/schemas/Pet"
+            description: Pet object that needs to be added to the store
+            required: true
+        schemas:
+          Order:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+              petId:
+                type: integer
+                format: int64
+              quantity:
+                type: integer
+                format: int32
+              shipDate:
+                type: string
+                format: date-time
+              status:
+                type: string
+                description: Order Status
+                enum:
+                  - placed
+                  - approved
+                  - delivered
+              complete:
+                type: boolean
+                default: false
+            xml:
+              name: Order
+          User:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+              username:
+                type: string
+              firstName:
+                type: string
+              lastName:
+                type: string
+              email:
+                type: string
+              password:
+                type: string
+              phone:
+                type: string
+              userStatus:
+                type: integer
+                format: int32
+                description: User Status
+            xml:
+              name: User
+          Category:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+              name:
+                type: string
+            xml:
+              name: Category
+          Tag:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+              name:
+                type: string
+            xml:
+              name: Tag
+          Pet:
+            type: object
+            required:
+              - name
+              - photoUrls
+            properties:
+              id:
+                type: integer
+                format: int64
+              category:
+                $ref: "#/components/schemas/Category"
+              name:
+                type: string
+                example: doggie
+              photoUrls:
+                type: array
+                xml:
+                  name: photoUrl
+                  wrapped: true
+                items:
+                  type: string
+              tags:
+                type: array
+                xml:
+                  name: tag
+                  wrapped: true
+                items:
+                  $ref: "#/components/schemas/Tag"
+              status:
+                type: string
+                description: pet status in the store
+                enum:
+                  - available
+                  - pending
+                  - sold
+            xml:
+              name: Pet
+          ApiResponse:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              type:
+                type: string
+              message:
+                type: string
+    contentType: yaml
+    _type: api_spec
+  - _id: env_env_0040731bcfa152dd7714b5ac908de5ecf4549cbb_sub
+    parentId: env_0040731bcfa152dd7714b5ac908de5ecf4549cbb
+    modified: 1669837704090
+    created: 1669836140359
+    name: OpenAPI env
+    data:
+      host: http://localhost:7002/api
+      userRout: /user
+      creditRout: /credit
+      api-key: qVBkx9WuGNh8GiL51phQ
+      authorization: 4d5a8bde-70dd-11ed-a001-18c04ded7ea2
+      code: /AME_A_FIN_1_0_99_0_XNE
+      id: /1
+      years: /10
+    dataPropertyOrder:
+      "&":
+        - host
+        - userRout
+        - creditRout
+        - api-key
+        - authorization
+        - code
+        - id
+        - years
+    color: null
+    isPrivate: false
+    metaSortKey: 1669836140359
+    _type: environment

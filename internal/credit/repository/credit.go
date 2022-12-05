@@ -10,6 +10,7 @@ import (
 	"probabilisticTimeSeriesModeling/config"
 	"probabilisticTimeSeriesModeling/internal/credit"
 	"probabilisticTimeSeriesModeling/pkg/fhttp"
+	"probabilisticTimeSeriesModeling/pkg/forecast"
 	"probabilisticTimeSeriesModeling/pkg/utils"
 )
 
@@ -28,6 +29,7 @@ type CreditRepo interface {
 	UpdateCodeDataByID(ctx context.Context, params credit.UpdateCodeDataByID) (err error)
 	AddCodeData(ctx context.Context, params credit.AddCodeData) (err error)
 
+	GetDataFromTableByCode(params credit.ForecastingBankDataRequest) (data []forecast.ForecastEl, err error)
 	CreateCustomUserDataTable(dbName string) (err error)
 	AddListCodeData(ctx context.Context, params []credit.AddCodeData) (err error)
 }
@@ -109,7 +111,7 @@ func (repo *creditRepo) InitCodeLists() (err error) {
 				}
 				return err
 			}
-			if _, err := tx.Exec(fmt.Sprintf(queryInsertDataIntoCodesDataTable, el.Code), convertedData.Price, convertedData.Data); err != nil {
+			if _, err := tx.Exec(fmt.Sprintf(queryInsertDataIntoCodesDataTable, el.Code), convertedData.Price, convertedData.Date); err != nil {
 				errR := tx.Rollback()
 				if errR != nil {
 					return errors.Wrapf(err, errR.Error())
@@ -199,6 +201,14 @@ func (repo *creditRepo) CreateCustomUserDataTable(dbName string) (err error) {
 		return err
 	}
 	err = tx.Commit()
+	if err != nil {
+		return
+	}
+	return
+}
+
+func (repo *creditRepo) GetDataFromTableByCode(params credit.ForecastingBankDataRequest) (data []forecast.ForecastEl, err error) {
+	err = repo.db.Select(&data, fmt.Sprintf(querySelectDataByCode, params.Code))
 	if err != nil {
 		return
 	}

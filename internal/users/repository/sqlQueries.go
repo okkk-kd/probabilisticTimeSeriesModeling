@@ -7,7 +7,9 @@ insert into users.users(name, password) values($1, $2)
 	queryUpdatePassword = `
 update users.users
 set password = $1
-where id = (select id from users.users where name = $2) and password = $3;
+where id = (select id from users.users where name = $2)
+  and password = $3
+returning true;
 `
 	queryAuthorizationInsertSessionKey = `
 insert into users.sessions(session_key, authed, user_id)

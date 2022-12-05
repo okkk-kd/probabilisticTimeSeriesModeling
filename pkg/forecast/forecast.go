@@ -1,7 +1,6 @@
 package forecast
 
 import (
-	"fmt"
 	"probabilisticTimeSeriesModeling/internal/credit"
 	"strconv"
 	"time"
@@ -20,15 +19,15 @@ func NewForecast() (obj Forecast, err error) {
 
 func (f *forecast) ForecastingBankData(bankData []ForecastEl, params credit.ForecastingBankDataRequest) (response *BankForecast, err error) {
 	var sum float64
-	var changeYear int
 	var yi float64
 	var bankForecast BankForecast
-	var timeDate time.Time
 	years, err := strconv.Atoi(params.Years)
+
 	if err != nil {
 		return
 	}
-	yearStart := 2010
+	period := f.FindTimePeriod(bankData[0].Date, bankData[1].Date)
+	year := bankData[0].Date
 
 	if len(bankData) < 1 {
 		return
@@ -38,68 +37,32 @@ func (f *forecast) ForecastingBankData(bankData []ForecastEl, params credit.Fore
 		if i+1 == bankDataLen {
 			break
 		}
-		sum += bankData[i].Price - bankData[i+1].Price
+		sum += bankData[i+1].Price - bankData[i].Price
 	}
 	b := sum / float64(bankDataLen)
-	a := bankData[bankDataLen-1].Price
+	a := bankData[0].Price
 	bankForecast.Points = make(map[int][]BankPoint)
-	changeYear = 1
 	for i := 0; i < bankDataLen+years*4-1; i++ {
-		if changeYear == 4 {
-			changeYear = 0
-			yearStart++
-			bankForecast.Points[yearStart] = make([]BankPoint, 0)
+		yi = a + b*float64(i)
+		if err != nil {
+			return
 		}
-		if i >= bankDataLen {
-			yi = a + b*float64(i)
-			timeDate, err = f.MakeDate(yearStart, changeYear)
-			if err != nil {
-				return
-			}
-			bankForecast.Points[yearStart] = append(bankForecast.Points[yearStart], BankPoint{
-				MidPrice: yi,
-				Date:     timeDate,
-			})
-		} else {
-			yi = a + b*float64(i)
-			timeDate, err = f.MakeDate(yearStart, changeYear)
-			if err != nil {
-				return
-			}
-			bankForecast.Points[yearStart] = append(bankForecast.Points[yearStart], BankPoint{
-				MidPrice: yi,
-				Date:     timeDate,
-			})
-		}
-		changeYear++
+		bankForecast.Points[year.Year()] = append(bankForecast.Points[year.Year()], BankPoint{
+			MidPrice: yi,
+			Date:     year,
+		})
+		year = year.Add(period)
 	}
 	response = &bankForecast
+	if b < 0 {
+		response.Trend = "down"
+	} else {
+		response.Trend = "up"
+	}
 	return
 }
 
-func (f *forecast) MakeDate(year, level int) (str time.Time, err error) {
-	switch level {
-	case 0:
-		str, err = time.Parse("2006-01-02", fmt.Sprintf("%d-03-31", year))
-		if err != nil {
-			return
-		}
-	case 1:
-		str, err = time.Parse("2006-01-02", fmt.Sprintf("%d-06-30", year))
-		if err != nil {
-			return
-		}
-	case 2:
-		str, err = time.Parse("2006-01-02", fmt.Sprintf("%d-09-30", year))
-		if err != nil {
-			return
-		}
-	case 3:
-		str, err = time.Parse("2006-01-02", fmt.Sprintf("%d-12-31", year))
-		if err != nil {
-			return
-		}
-	}
-
+func (f *forecast) FindTimePeriod(t1, t2 time.Time) (period time.Duration) {
+	period = t2.Sub(t1)
 	return
 }

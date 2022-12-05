@@ -39,4 +39,7 @@ update codes.%s set amount = $1, date = $2 where id = $3
 insert into codes.%s (amount, date)
 values ($1, $2);
 `
+	querySelectDataByCode = `
+select date, amount from codes.%s
+`
 )

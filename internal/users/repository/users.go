@@ -3,6 +3,7 @@ package repository
 import (
 	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
+	"github.com/pkg/errors"
 	"probabilisticTimeSeriesModeling/config"
 	"probabilisticTimeSeriesModeling/internal/users"
 )
@@ -34,9 +35,13 @@ func (repo *userRepo) CreateUser(params users.CreateUser) (err error) {
 }
 
 func (repo *userRepo) UpdateUserPassword(params users.UpdateUserPassword) (err error) {
-	_, err = repo.pgDB.Exec(queryUpdatePassword, params.NewPassword, params.UserName, params.CurrentPassword)
+	var ok bool
+	err = repo.pgDB.Get(&ok, queryUpdatePassword, params.NewPassword, params.UserName, params.CurrentPassword)
 	if err != nil {
-		return
+		return errors.New("Current password isn't correct")
+	}
+	if !ok {
+		return errors.New("Current password isn't correct")
 	}
 	return
 }

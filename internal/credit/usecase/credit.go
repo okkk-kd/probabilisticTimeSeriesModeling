@@ -6,6 +6,7 @@ import (
 	"probabilisticTimeSeriesModeling/internal/credit/repository"
 	"probabilisticTimeSeriesModeling/pkg/forecast"
 	"probabilisticTimeSeriesModeling/pkg/utils"
+	"sort"
 )
 
 type creditUC struct {
@@ -45,6 +46,12 @@ func (uc *creditUC) ForecastingBankData(params credit.ForecastingBankDataRequest
 	if err != nil {
 		return
 	}
+	if rawData.Datasett.Data == nil {
+		bankData, err = uc.repo.GetDataFromTableByCode(params)
+		if err != nil {
+			return
+		}
+	}
 	for _, obj := range rawData.Datasett.Data {
 		bank, err := utils.ConvertToBankData(obj)
 		if err != nil {
@@ -52,6 +59,9 @@ func (uc *creditUC) ForecastingBankData(params credit.ForecastingBankDataRequest
 		}
 		bankData = append(bankData, bank)
 	}
+	sort.SliceStable(bankData, func(i, j int) bool {
+		return bankData[i].Date.Before(bankData[j].Date)
+	})
 	fore, err := forecast.NewForecast()
 	if err != nil {
 		return

@@ -4,6 +4,7 @@ import "time"
 
 type BankForecast struct {
 	Points map[int][]BankPoint
+	Trend  string
 }
 
 type BankPoint struct {
@@ -12,6 +13,6 @@ type BankPoint struct {
 }
 
 type ForecastEl struct {
-	Data  string
-	Price float64
+	Date  time.Time `db:"date"`
+	Price float64   `db:"amount"`
 }
