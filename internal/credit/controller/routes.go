@@ -14,5 +14,5 @@ func CreditRoutesGroup(mw middleware.MDWManager, creditRout fiber.Router, h Cred
 	creditRout.Patch("/code", mw.APIMiddleware(), h.UpdateCodeDataByID())
 	creditRout.Post("/code_data", mw.APIMiddleware(), h.AddCodeData())
 	creditRout.Post("/create_table", mw.APIMiddleware(), h.CreateCustomUserDataTable())
-	creditRout.Post("/:code/code_data_list", mw.APIMiddleware(), h.AddListCodeData())
+	creditRout.Post("/code_data_list", mw.APIMiddleware(), h.AddListCodeData())
 }

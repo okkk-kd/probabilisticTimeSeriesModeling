@@ -1,0 +1,415 @@
+{
+	"info": {
+		"_postman_id": "d7610e58-083d-4888-a2fa-90efb21a0827",
+		"name": "probalisticTimeSerial",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "update_password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorization}}",
+								"type": "default"
+							},
+							{
+								"key": "API-Key",
+								"value": "{{API-Key}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_name\": \"daniil\",\n    \"current_password\": \"kritinidzin\",\n    \"new_password\": \"kritsin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{user}}/update_password",
+							"host": [
+								"{{host}}{{user}}"
+							],
+							"path": [
+								"update_password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "authorization",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "API-Key",
+								"value": "{{API-Key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_name\": \"daniil\",\n    \"password\": \"kritsin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{user}}/authorization",
+							"host": [
+								"{{host}}{{user}}"
+							],
+							"path": [
+								"authorization"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registration",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "API-Key",
+								"value": "{{API-Key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_name\": \"name\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{user}}",
+							"host": [
+								"{{host}}{{user}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "credit",
+			"item": [
+				{
+					"name": "get_api_data_by_code",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "API-Key",
+								"value": "{{API-Key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}{{credit}}{{code}}/retrieve_two_columns",
+							"host": [
+								"{{host}}{{credit}}{{code}}"
+							],
+							"path": [
+								"retrieve_two_columns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "bank_forecast",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "API-Key",
+								"value": "{{API-Key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}{{credit}}{{code}}{{years}}/bank_forecast",
+							"host": [
+								"{{host}}{{credit}}{{code}}{{years}}"
+							],
+							"path": [
+								"bank_forecast"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "codes_list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "API-Key",
+								"value": "{{API-Key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}{{credit}}/bank_forecast",
+							"host": [
+								"{{host}}{{credit}}"
+							],
+							"path": [
+								"bank_forecast"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_code_data_by_id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "API-Key",
+								"value": "{{API-Key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}{{credit}}{{id}}{{code}}/get_code_data",
+							"host": [
+								"{{host}}{{credit}}{{id}}{{code}}"
+							],
+							"path": [
+								"get_code_data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_row_in_table_by_id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "API-Key",
+								"value": "{{API-Key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}{{credit}}{{id}}{{code}}/code",
+							"host": [
+								"{{host}}{{credit}}{{id}}{{code}}"
+							],
+							"path": [
+								"code"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_code_by_id",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "API-Key",
+								"value": "{{API-Key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"code\": \"dg\",\n    \"amount\": 12,\n    \"date\": \"fg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{credit}}/code",
+							"host": [
+								"{{host}}{{credit}}"
+							],
+							"path": [
+								"code"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add_row_in_table",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "API-Key",
+								"value": "{{API-Key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\": \"test_table\",\n    \"amount\": 12,\n    \"date\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{credit}}/code_data",
+							"host": [
+								"{{host}}{{credit}}"
+							],
+							"path": [
+								"code_data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add_row_in_table",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "API-Key",
+								"value": "{{API-Key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"db_name\": \"test_table\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{credit}}/create_table",
+							"host": [
+								"{{host}}{{credit}}"
+							],
+							"path": [
+								"create_table"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add_list_rows_int_table",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "API-Key",
+								"value": "{{API-Key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\": \"\",\n    \"data\": [\n        {\n            \"code\": \"\",\n            \"amount\": 12,\n            \"date\": \"\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{credit}}{{code}}/code_data_list",
+							"host": [
+								"{{host}}{{credit}}{{code}}"
+							],
+							"path": [
+								"code_data_list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
