@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Приложение прогнозирования</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Bootstrap JS -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"></script>
+
+    <!-- jQuery -->
+    <script
+      defer
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Custom JS -->
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header class="custom-header">
+      <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Аналитика</a>
+        </li>
+      </ul>
+    </header>
+    <main class="custom-content-container">
+      <h1 class="custom-main-title">Динамика изменения цен</h1>
+      <table
+        id="price-table"
+        class="table table-striped table-hover table-responsive">
+        <thead>
+          <tr>
+            <th scope="col">Год</th>
+            <th scope="col">Средняя цена</th>
+            <th scope="col">Дата</th>
+          </tr>
+        </thead>
+        <tbody id="price-table-body"></tbody>
+      </table>
+    </main>
+  </body>
+</html>
