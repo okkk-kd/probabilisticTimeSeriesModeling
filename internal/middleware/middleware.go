@@ -52,10 +52,10 @@ func (mw *mdwManager) APIMiddleware() fiber.Handler {
 
 func (mw *mdwManager) NonAuthed() fiber.Handler {
 	return func(c *fiber.Ctx) error {
-		if c.Get("API-Key") != mw.cfg.Server.APIKey {
-			mw.logger.Warn(" APIMiddleware wrong API Key")
-			return c.SendStatus(fiber.StatusUnauthorized)
-		}
+		//if c.Get("API-Key") != mw.cfg.Server.APIKey {
+		//	mw.logger.Warn(" APIMiddleware wrong API Key")
+		//	return c.SendStatus(fiber.StatusUnauthorized)
+		//}
 		return c.Next()
 	}
 }
