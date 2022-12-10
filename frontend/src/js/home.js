@@ -8,7 +8,7 @@ function main() {
   const dropdownCodeList = $('#code-list');
 
   const settings = {
-    url: `${BASE_URL}/credit/bank_forecast`,
+    url: `${BASE_URL}/credit/codes_list`,
     method: 'GET',
     contentType: 'application/json',
     dataType: 'json',

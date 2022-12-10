@@ -36,12 +36,12 @@ function main() {
 }
 
 function auth(authType = 'login') {
-  let email = $('#email').val();
+  let userName = $('#user_name').val();
   let password = $('#password').val();
   let url = `${BASE_URL}/user/authorization`;
 
   if (authType === 'register') {
-    email = $('#reg-email').val();
+    userName = $('#reg-user_name').val();
     password = $('#reg-password').val();
     url = `${BASE_URL}/user/registration`;
   }
@@ -49,7 +49,7 @@ function auth(authType = 'login') {
   const settings = {
     url,
     method: 'POST',
-    data: JSON.stringify({ email, password }),
+    data: JSON.stringify({ userName, password }),
     contentType: 'application/json',
     dataType: 'json',
     timeout: 0,

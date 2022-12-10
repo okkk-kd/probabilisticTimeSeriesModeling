@@ -5,7 +5,7 @@ Server:
   NasdaqURL: https://data.nasdaq.com
   ShowUnknownErrorsInResponse: true
 Postgres:
-  Host: host.docker.internal
+  Host: localhost
   Port: '5432'
   User: postgres
   Password: postgres
