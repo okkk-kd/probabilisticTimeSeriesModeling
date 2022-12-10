@@ -33,7 +33,7 @@ func main() {
 
 	psqlDB, err := postgres.InitPsqlDB(ctx, &cfg)
 	if err != nil {
-		logger.Fatalf("PostgreSQL init error: %s", err)
+		logger.Fatalf("PostgreSQL init error: %s", err.Error())
 	} else {
 		logger.Infof("PostgreSQL connected, status: %#v", psqlDB.Stats())
 	}
