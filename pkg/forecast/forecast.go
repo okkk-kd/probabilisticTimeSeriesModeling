@@ -1,6 +1,7 @@
 package forecast
 
 import (
+	"github.com/pkg/errors"
 	"probabilisticTimeSeriesModeling/internal/credit"
 	"strconv"
 	"time"
@@ -22,7 +23,9 @@ func (f *forecast) ForecastingBankData(bankData []ForecastEl, params credit.Fore
 	var yi float64
 	var bankForecast BankForecast
 	years, err := strconv.Atoi(params.Years)
-
+	if len(bankData) < 1 {
+		return nil, errors.New("empty table")
+	}
 	if err != nil {
 		return
 	}

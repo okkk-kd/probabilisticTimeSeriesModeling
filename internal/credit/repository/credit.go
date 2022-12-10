@@ -31,7 +31,7 @@ type CreditRepo interface {
 
 	GetDataFromTableByCode(params credit.ForecastingBankDataRequest) (data []forecast.ForecastEl, err error)
 	CreateCustomUserDataTable(dbName string) (err error)
-	AddListCodeData(ctx context.Context, params []credit.AddCodeData) (err error)
+	AddListCodeData(ctx context.Context, params credit.AddListCodeData) (err error)
 }
 
 func NewCreditRepo(cfg *config.Config, fhttpClient *fhttp.Client, pgDB *sqlx.DB) (obj CreditRepo, err error) {
@@ -159,13 +159,13 @@ func (repo *creditRepo) AddCodeData(ctx context.Context, params credit.AddCodeDa
 	return
 }
 
-func (repo *creditRepo) AddListCodeData(ctx context.Context, params []credit.AddCodeData) (err error) {
+func (repo *creditRepo) AddListCodeData(ctx context.Context, params credit.AddListCodeData) (err error) {
 	tx, err := repo.db.Begin()
 	if err != nil {
 		return
 	}
-	for _, el := range params {
-		_, err = tx.ExecContext(ctx, fmt.Sprintf(queryAddCodeData, el.Code), el.Amount, el.Date)
+	for _, el := range params.Data {
+		_, err = tx.ExecContext(ctx, fmt.Sprintf(queryAddCodeData, params.Code), el.Amount, el.Date)
 		if err != nil {
 			errR := tx.Rollback()
 			if errR != nil {

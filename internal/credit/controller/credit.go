@@ -174,7 +174,7 @@ func (ctrl *creditCtrl) AddListCodeData() fiber.Handler {
 			ctx.Status(fiber.StatusBadRequest).JSON(err.Error())
 		}
 		params.Code = strings.ToLower(ctx.Params("code", params.Code))
-		err = ctrl.creditUC.AddListCodeData(ctx.Context(), params.Data)
+		err = ctrl.creditUC.AddListCodeData(ctx.Context(), params)
 		if err != nil {
 			err = errors.Wrapf(err, "creditCtrl.AddListCodeData()")
 			ctx.Locals("error", err.Error())
