@@ -1,4 +1,4 @@
-const BASE_URL = 'http://127.0.0.1:7001/api';
+import { BASE_URL } from './config.js';
 
 $(function () {
   main();
@@ -36,12 +36,12 @@ function main() {
 }
 
 function auth(authType = 'login') {
-  let userName = $('#user_name').val();
+  let user_name = $('#user_name').val().trim();
   let password = $('#password').val();
   let url = `${BASE_URL}/user/authorization`;
 
   if (authType === 'register') {
-    userName = $('#reg-user_name').val();
+    user_name = $('#reg-user_name').val().trim();
     password = $('#reg-password').val();
     url = `${BASE_URL}/user/registration`;
   }
@@ -49,7 +49,7 @@ function auth(authType = 'login') {
   const settings = {
     url,
     method: 'POST',
-    data: JSON.stringify({ userName, password }),
+    data: JSON.stringify({ user_name, password }),
     contentType: 'application/json',
     dataType: 'json',
     timeout: 0,
@@ -71,8 +71,10 @@ function auth(authType = 'login') {
 
       if (authType === 'login') {
         $('#password').val('');
+        $('#error').css('display', 'block');
       } else {
         $('#reg-password').val('');
+        $('#reg-error').css('display', 'block');
       }
     });
 }
