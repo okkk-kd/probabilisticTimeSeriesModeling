@@ -3,11 +3,12 @@ services:
   db:
     image: postgres:14.1-alpine
     restart: always
+    container_name: postgres_container
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports:
-      - '5432:5432'
+      - 5432:5432
     volumes:
       - db:/var/lib/postgresql/data
       - ./db/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
@@ -17,7 +18,7 @@ services:
     depends_on:
       - db
     ports:
-      - '7001:7001'
+      - 7001:7001
     links:
       - db
     command: go run cmd/main.go
