@@ -61,7 +61,7 @@ function auth(authType = 'login') {
 
       $(location).attr(
         'href',
-        'http://127.0.0.1:5500/frontend/src/pages/home/index.html'
+        'http://127.0.0.1:5500/src/pages/home/index.html'
       );
     })
     .fail(error => {

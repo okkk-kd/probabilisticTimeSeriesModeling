@@ -1,10 +1,9 @@
 package logger
 
 import (
+	"github.com/rs/zerolog"
 	"os"
 	"probabilisticTimeSeriesModeling/config"
-
-	"github.com/rs/zerolog"
 )
 
 type Logger interface {
