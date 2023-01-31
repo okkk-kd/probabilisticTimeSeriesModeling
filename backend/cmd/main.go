@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/gofiber/fiber/v2"
 	"github.com/jmoiron/sqlx"
+	"log"
 	"os"
 	"os/signal"
 	"probabilisticTimeSeriesModeling/config"
@@ -20,6 +21,7 @@ func main() {
 
 	cfg, err := config.LoadConfig()
 	if err != nil {
+		log.Default().Println(err.Error())
 		return
 	}
 
@@ -51,7 +53,6 @@ func main() {
 	if err != nil {
 		return
 	}
-
 	err = s.RunServer()
 	if err != nil {
 		return

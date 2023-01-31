@@ -23,6 +23,7 @@ type CreditUC interface {
 	AddCodeData(ctx context.Context, params credit.AddCodeData) (err error)
 	CreateCustomUserDataTable(dbName string) (err error)
 	AddListCodeData(ctx context.Context, params credit.AddListCodeData) (err error)
+	GetDataTablesFromDBByCode(code string) (response []forecast.ForecastEl, err error)
 }
 
 func NewCreditUC(repo repository.CreditRepo) (obj CreditUC, err error) {
@@ -33,6 +34,14 @@ func NewCreditUC(repo repository.CreditRepo) (obj CreditUC, err error) {
 
 func (uc *creditUC) RetrieveTwoColumns(code string) (response credit.Dataset, err error) {
 	response, err = uc.repo.RetrieveTwoColumns(code)
+	if err != nil {
+		return
+	}
+	return
+}
+
+func (uc *creditUC) GetDataTablesFromDBByCode(code string) (response []forecast.ForecastEl, err error) {
+	response, err = uc.repo.GetDataFromTable(code)
 	if err != nil {
 		return
 	}

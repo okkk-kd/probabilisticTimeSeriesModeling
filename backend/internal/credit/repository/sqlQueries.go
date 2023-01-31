@@ -40,6 +40,6 @@ insert into codes.%s (amount, date)
 values ($1, $2);
 `
 	querySelectDataByCode = `
-select date, amount from codes.%s
+select id, date, amount from codes.%s
 `
 )

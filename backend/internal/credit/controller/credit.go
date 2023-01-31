@@ -26,6 +26,7 @@ type CreditCtrl interface {
 	AddCodeData() fiber.Handler
 	CreateCustomUserDataTable() fiber.Handler
 	AddListCodeData() fiber.Handler
+	GetDataFromTableByCode() fiber.Handler
 }
 
 func NewCreditCtrl(creditUC usecase.CreditUC, loggingUC logger.LoggerUC) (obj CreditCtrl, err error) {
@@ -43,6 +44,20 @@ func (ctrl *creditCtrl) RetrieveTwoColumns() fiber.Handler {
 		result, err := ctrl.creditUC.RetrieveTwoColumns(params.Code)
 		if err != nil {
 			err = errors.Wrapf(err, "creditCtrl.RetrieveTwoColumns()")
+			ctx.Locals("error", err.Error())
+			return ctx.Status(fiber.StatusBadRequest).JSON(err.Error())
+		}
+		return ctx.Status(fiber.StatusOK).JSON(result)
+	}
+}
+
+func (ctrl *creditCtrl) GetDataFromTableByCode() fiber.Handler {
+	return func(ctx *fiber.Ctx) error {
+		var code string
+		code = strings.ToLower(ctx.Params("code", code))
+		result, err := ctrl.creditUC.GetDataTablesFromDBByCode(code)
+		if err != nil {
+			err = errors.Wrapf(err, "creditCtrl.GetDataFromTableByCode()")
 			ctx.Locals("error", err.Error())
 			return ctx.Status(fiber.StatusBadRequest).JSON(err.Error())
 		}
