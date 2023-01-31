@@ -11,13 +11,9 @@ $(function () {
 });
 
 function main() {
-
-
   dropdownMenuButton.on('click', () => {
     dropdownCodeList.html('');
-
     
-
     const settings = {
       url: `${BASE_URL}/credit/codes_list`,
       method: 'GET',
@@ -131,7 +127,7 @@ function createNewTable() {
 }
 
 function createTableRow(date, midprice, key, code) {
-  const tableRow = `<tr id="remove-${ID}">
+  const tableRow = `<tr id="remove-${key}" >
       <td>${date}</td>
       <td>
         <input
@@ -191,6 +187,7 @@ function fetchDataByCode(el) {
       }
 
       $('.remove-button').click((e) => {
+        console.log(e.currentTarget.attributes.data.value)
         
         const settings = {
           url: `${BASE_URL}/credit/${e.currentTarget.attributes.data.value}/${document.getElementById('table-to-change-name').innerHTML}/code`,

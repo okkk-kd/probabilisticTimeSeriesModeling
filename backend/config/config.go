@@ -1,9 +1,10 @@
 package config
 
 import (
+	"time"
+
 	"github.com/rs/zerolog"
 	"github.com/spf13/viper"
-	"time"
 )
 
 type Config struct {
@@ -42,7 +43,7 @@ type Logger struct {
 }
 
 func LoadConfig() (c Config, err error) {
-	viper.AddConfigPath("./config/")
+	viper.AddConfigPath("./")
 	viper.SetConfigName("config")
 	viper.SetConfigType("yml")
 	viper.AutomaticEnv()

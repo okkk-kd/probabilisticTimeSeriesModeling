@@ -25,6 +25,7 @@ function onSuccess(data) {
 
   for (let [key, value] of Object.entries(data)) {
     const rowData = value[0];
+    console.log(key)
 
     const newTableRow = createTableRow(key, rowData.MidPrice, rowData.Date);
 
