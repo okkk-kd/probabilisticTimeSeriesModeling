@@ -11,7 +11,6 @@ function main() {
 
   $.ajax(settings)
     .done(response => {
-      console.log(response);
       onSuccess(response);
     })
     .fail(error => {

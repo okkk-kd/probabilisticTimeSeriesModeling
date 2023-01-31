@@ -11,8 +11,12 @@ $(function () {
 });
 
 function main() {
+
+
   dropdownMenuButton.on('click', () => {
     dropdownCodeList.html('');
+
+    
 
     const settings = {
       url: `${BASE_URL}/credit/codes_list`,
@@ -25,7 +29,7 @@ function main() {
     $.ajax(settings)
       .done(response => {
         response.forEach(el => {
-          const newCodeItem = $(createCodeItem(el.Name, el.Code));
+          const newCodeItem = $(createCodeItem(el.Name, el.Code, el.ID));
 
           newCodeItem.on('click', () => fetchDataByCode(el));
 
@@ -46,6 +50,7 @@ function main() {
     createNewTable();
     newTableForm.css('display', 'none');
     newRowForm.css('display', 'grid');
+
 
     const settings = {
       url: `${BASE_URL}/credit/create_table`,
@@ -70,19 +75,40 @@ function main() {
     newTableBody = $('#new-table-body');
     const newRowDateElement = $('#new-row-date');
     const newRowPriceElement = $('#new-row-price');
+
+
     let newRowDate = newRowDateElement.val();
     let newRowPrice = +newRowPriceElement.val();
+
+
+    const settings = {
+      url: `${BASE_URL}/credit/code_data`,
+      method: 'POST',
+      data: JSON.stringify({ code: document.getElementById('table-to-change-name').innerHTML, amount: newRowPrice, date: newRowDate }),
+      contentType: 'application/json',
+      dataType: 'json',
+      timeout: 0,
+    };
+
 
     const newTableRow = createTableRow(newRowDate, newRowPrice);
 
     newTableBody.append(newTableRow);
+
+    $.ajax(settings)
+      .done(response => {})
+      .fail(error => {
+        console.error(`Error Info
+          Status: ${error.status}
+          Text: ${error.statusText}`);
+      });
 
     newRowDateElement.val('');
     newRowPriceElement.val('');
   });
 }
 
-function createCodeItem(name, code) {
+function createCodeItem(name, code, id) {
   return `<li><span class="dropdown-item c-pointer" data-code="${code}">${name}</span></li>`;
 }
 
@@ -101,10 +127,11 @@ function createNewTable() {
     </table>`;
 
   $('#table-box').html(newTableElement);
+  
 }
 
-function createTableRow(date, midprice) {
-  const tableRow = `<tr>
+function createTableRow(date, midprice, key, code) {
+  const tableRow = `<tr id="remove-${ID}">
       <td>${date}</td>
       <td>
         <input
@@ -112,10 +139,10 @@ function createTableRow(date, midprice) {
         step=".01"
         class="form-control"
         placeholder="Средняя цена"
-        value="${midprice.toFixed(2)}" />
+        value="${midprice}" />
       </td>
       <td>
-        <button class="delete-icon text-danger">
+        <button class="delete-icon text-danger remove-button" data="${key}">
             <i class="fa-solid fa-trash"></i>
         </button>
       </td>
@@ -124,9 +151,16 @@ function createTableRow(date, midprice) {
   return tableRow;
 }
 
+
+
 function fetchDataByCode(el) {
+  document.getElementById('table-to-change-name').innerHTML = el.Name;
+  newRowForm.css('display', 'grid');
+
+
+
   const settings = {
-    url: `${BASE_URL}/credit/${el.Code}/retrieve_two_columns/`,
+    url: `${BASE_URL}/credit/${el.Code}/get_data_tables`,
     method: 'GET',
     contentType: 'application/json',
     dataType: 'json',
@@ -135,21 +169,49 @@ function fetchDataByCode(el) {
 
   $.ajax(settings)
     .done(response => {
-      console.log(el.Name);
       $('#table-name-title').text(el.Name);
 
-      const yearsData = response.dataset.data;
+
 
       createNewTable();
 
-      for (let [key, value] of Object.entries(yearsData)) {
-        let year = value[0];
-        let price = value[1];
 
-        const newTableRow = createTableRow(year, price);
+      for (let i = 0; i < response.length; i++) {
+        let element = response[i];
+
+        let year = element.Date;
+        let price = element.Price;
+
+
+        const newTableRow = createTableRow(year, price, element.ID);
 
         $('#new-table-body').append(newTableRow);
+        
+
       }
+
+      $('.remove-button').click((e) => {
+        
+        const settings = {
+          url: `${BASE_URL}/credit/${e.currentTarget.attributes.data.value}/${document.getElementById('table-to-change-name').innerHTML}/code`,
+          method: 'DELETE',
+          contentType: 'application/json',
+          dataType: 'json',
+          timeout: 0,
+        };
+
+        document.getElementById(`remove-${e.currentTarget.attributes.data.value}`).style.display = 'none';
+
+        
+        $.ajax(settings)
+        .done(response => {})
+        .fail(error => {
+          console.error(`Error Info
+            Status: ${error.status}
+            Text: ${error.statusText}`);
+        });
+      });
+
     })
     .fail(error => {
       console.error(`Error Info
