@@ -150,7 +150,7 @@ function createTableRow(date, midprice, key, code) {
 
 
 function fetchDataByCode(el) {
-  document.getElementById('table-to-change-name').innerHTML = el.Name;
+  document.getElementById('table-to-change-name').innerHTML = el.Code;
   newRowForm.css('display', 'grid');
 
 
