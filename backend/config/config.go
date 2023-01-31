@@ -43,7 +43,7 @@ type Logger struct {
 }
 
 func LoadConfig() (c Config, err error) {
-	viper.AddConfigPath("./")
+	viper.AddConfigPath("./backend/config/")
 	viper.SetConfigName("config")
 	viper.SetConfigType("yml")
 	viper.AutomaticEnv()

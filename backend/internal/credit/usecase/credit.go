@@ -33,9 +33,16 @@ func NewCreditUC(repo repository.CreditRepo) (obj CreditUC, err error) {
 }
 
 func (uc *creditUC) RetrieveTwoColumns(code string) (response credit.Dataset, err error) {
-	response, err = uc.repo.RetrieveTwoColumns(code)
+	//response, err = uc.repo.RetrieveTwoColumns(code)
+	//if err != nil {
+	//	return
+	//}
+	correctResponse, err := uc.repo.GetDataFromTable(code)
 	if err != nil {
 		return
+	}
+	for _, el := range correctResponse {
+		response.Datasett.Data = append(response.Datasett.Data, []interface{}{el.Date, el.Price})
 	}
 	return
 }

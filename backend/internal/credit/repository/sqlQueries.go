@@ -5,7 +5,7 @@ const (
 select id, name, code from codes.codes
 `
 	queryCreateCodesDataTable = `
-create table codes.%s
+create table if not exists codes.%s
 (
     id     serial
         constraint %s_pk

@@ -1,5 +1,12 @@
 version: '3.8'
 services:
+  nginx:
+    image: 'nginx:latest'
+    container_name: nginx
+    ports:
+      - '127.0.0.1:5500:80'
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
   db:
     image: postgres:14.1-alpine
     restart: always
@@ -12,6 +19,16 @@ services:
     volumes:
       - /backend/db:/var/lib/postgresql/data
       - ./backend/db/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
+  api:
+    container_name: quotes-api
+    build: ./backend
+    depends_on:
+      - db
+    ports:
+      - '7001:7001'
+    links:
+      - db
+    command: go run cmd/main.go
 volumes:
   db:
     driver: local
