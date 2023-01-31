@@ -40,7 +40,7 @@ function createCodeItem(name, code) {
 
 function fetchDataByCode(code) {
   const settings = {
-    url: `${BASE_URL}/credit/${code}/get_data_tables/`,
+    url: `${BASE_URL}/credit/${code}/retrieve_two_columns/`,
     method: 'GET',
     contentType: 'application/json',
     dataType: 'json',
